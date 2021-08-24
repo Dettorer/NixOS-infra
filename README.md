@@ -26,7 +26,7 @@ options for more details).
   enables it in its entrypoint.
 - `common/` contains definitions that I want on all machines.
 - `home-config/` is the home-manager configuration for my "dettorer" user (it's
-  imported by `common/users.nix`.
+  imported by `common/users.nix`).
 - `my-packages/` contains the very few custom packages I want which are not
   already in nixpkgs. The whole folder is used as an
   [overlay](https://nixos.wiki/wiki/Overlays) on nixpkgs.
