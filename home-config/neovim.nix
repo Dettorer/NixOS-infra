@@ -1,0 +1,445 @@
+{ pkgs, ... }:
+{
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    withNodeJs = true;
+    withPython3 = true;
+    extraPackages = with pkgs; [
+      (python3.withPackages (ps: with ps; [
+        black
+        flake8
+      ]))
+      rnix-lsp
+      opam
+      git
+    ];
+
+    extraPython3Packages = (ps: with ps; [
+      jedi
+    ]);
+
+    plugins = with pkgs.vimPlugins; [
+      # Themes and visuals
+      vim-one
+      vim-airline-themes
+      vim-devicons
+      {
+        plugin = vim-airline;
+        config = "let g:airline_powerline_fonts = 1";
+      }
+      {
+        plugin = indentLine;
+        config = "let g:indentLine_fileTypeExclude = ['markdown']";
+      }
+
+      # Vim behaviors improvements
+      vim-obsession
+      targets-vim
+      suda-vim
+      vim-eunuch
+
+      # Language-agnostic editing improvements
+      ctrlp-vim
+      nerdtree
+      {
+        plugin = vim-easy-align;
+        config = ''
+          " Start interactive EasyAlign in visual mode (e.g. vipga)
+          xmap ga <Plug>(EasyAlign)
+          " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+          nmap ga <Plug>(EasyAlign)
+        '';
+      }
+
+      # Language-specific improvements
+      # python-syntax
+      # black
+      vim-toml
+      vim-python-pep8-indent
+      vim-cpp-enhanced-highlight
+      vim-nix
+      {
+        plugin = rust-vim;
+        config = "let g:rust_cargo_use_clippy = 1";
+      }
+      {
+        plugin = SimpylFold;
+        config = ''
+          let g:SimpylFold_docstring_preview = 1
+          let g:SimpylFold_fold_docstring = 0
+        '';
+      }
+      {
+        plugin = vimtex;
+        config = ''
+          let g:vimtex_fold_enabled=1
+          let g:vimtex_view_automatic=0
+
+          " When in doubt between plaintex and latex, default to latex
+          let g:tex_flavor = 'latex'
+
+          " I redefine mappings in ftplugin/tex.vim
+          let g:vimtex_mappings_enabled=0
+          let g:vimtex_imaps_enabled=0
+
+          " Ignore some latex warnings
+          let g:vimtex_quickfix_latexlog = {'overfull' : 0, 'font' : 0, 'underfull' : 0}
+
+          " Do not conceal stuff
+          let g:tex_conceal=''\'''\'
+          '';
+      }
+      {
+        plugin = vim-javascript;
+        config = ''
+            let g:javascript_plugin_jsdoc = 1
+            augroup javascript_folding
+            au!
+            au FileType javascript setlocal foldmethod=syntax
+            augroup END
+        '';
+      }
+
+      # Dev tools
+      vim-test
+      {
+        plugin = nerdcommenter;
+        config = "let g:NERDSpaceDelims=1";
+      }
+      {
+        plugin = coc-nvim;
+        config = ''
+          " Extensions
+          let g:coc_global_extensions = [
+            \'coc-clangd',
+            \'coc-git',
+            \'coc-highlight',
+            \'coc-markdownlint',
+            \'coc-python',
+            \'coc-sh',
+            \'coc-texlab',
+            \'coc-xml',
+            \'coc-cmake',
+            \'coc-go',
+            \'coc-json',
+            \'coc-omnisharp',
+            \'coc-rls',
+            \'coc-sql',
+            \'coc-tsserver',
+            \'coc-yaml'
+          \]
+
+          " Select autocompletion item with Tab and S-Tab, confirm with CR
+          inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+          inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+          inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+          " Code navigation
+          nmap <leader>ld <Plug>(coc-definition)
+          nmap <leader>lt <Plug>(coc-type-definition)
+          nmap <leader>li <Plug>(coc-implementation)
+          nmap <leader>lr <Plug>(coc-references-used)
+
+          " Code actions
+          vmap <leader>laf <Plug>(coc-format-selected)
+          nmap <leader>laf <Plug>(coc-format)
+          nmap <leader>lar <Plug>(coc-rename)
+          nmap <leader>laq <Plug>(coc-fix-current)
+
+          " Highlight other uses of the symbol currently under the cursor (needs
+          " coc-highlight)
+          autocmd CursorHold * silent call CocActionAsync('highlight')
+          highlight CocHighlightText guibg=#4b5263
+
+          " let g:opamshare = substitute(system('opam config var share'),'\n$',''\'''\',''\'''\'''\'''\')
+          " execute "set rtp+=" . g:opamshare . "/merlin/vim"
+        '';
+      }
+      {
+        plugin = ultisnips;
+        config = ''
+          let g:UltiSnipsExpandTrigger="<c-j>"
+          let g:UltiSnipsSnippetDirectories=["plugged/UltiSnips/UltiSnips", "custom_snippets"]
+        '';
+      }
+    ];
+
+    extraConfig = ''
+      " General settings {{{
+      set encoding=utf-8
+
+      " Deactivate legacy vi compatibility
+      set nocompatible
+
+      " Set the prefix for many plugin commands
+      let mapleader=","
+      let maplocalleader="\\"
+
+      " Toggle g option by default on substition
+      set gdefault
+
+      " Increase the maximum tab number while launching vim with -p
+      set tabpagemax=50
+
+      " Split behavior
+      set splitbelow
+      set splitright
+
+      " When scrolling, keep at list 5 lines visible on screen around the cursor
+      set scrolloff=5
+
+      " Make the backspace key have a sensible behavior
+      set backspace=indent,eol,start
+
+      " Check for vim settings embeded in the files we open
+      set modeline
+      set modelines=5
+
+      " Show selection size in visual mode
+      set showcmd
+
+      " Use fold markers by default
+      set fdm=marker
+
+      " Enhance command line completion
+      set wildmenu
+      " Set completion behavior, see :help wildmode for details
+      set wildmode=list:longest:full
+
+      " Disable bell completely
+      set visualbell
+      set t_vb=
+
+      " Highlight some special characters
+      set list
+      set listchars=tab:.\ ,nbsp:␣,precedes:«,extends:»
+
+      " Briefly show matching braces, parenthesis, etc
+      set showmatch
+
+      " Better vertical separator
+      set fillchars=vert:│
+
+      " Always show status line
+      set laststatus=2
+
+      " Show line number relative to the current one, but show absolute number for the
+      " current one
+      set number
+      set relativenumber
+
+      " Highlight the cursor line
+      set cursorline
+
+      " Allow loading local .nvimrc files for custom configuration per project,
+      " but disallow :autocmd in them
+      set exrc
+      set secure
+
+      " Do not unload abandonned buffers, useful for Coc
+      set hidden
+
+      " Shorter time trigger for CursorHold (which makes coc-highlight show other uses
+      " of the symbol currently under the cursor)
+      set updatetime=1000
+      " }}}
+
+      " bépo remaping {{{
+      let g:bepo_enable=0
+      function! ToggleBepo()
+      if g:bepo_enable == 0
+        let g:bepo_enable=1
+        set langmap=$`,\\"1,«2,»3,(4,)5,@6,+7,-8,/9,*0,=-,%=,bq,éw,pe,or,èt,^y,vu,di,lo,jp,z[,w],aa,us,id,ef,\\,g,ch,tj,sk,rl,n\\;,m',ç\\\\,ê<,àz,yx,xc,.v,kb,'n,qm,g\\,,h.,f/,#~,1!,2@,3#,4$,5%,6^,7&,8*,9(,0),°_,`+,BQ,ÉW,PE,OR,ÈT,!Y,VU,DI,LO,JP,Z{,W},AA,US,ID,EF,\\;G,CH,TJ,SK,RL,N:,M\\",Ç\\|,Ê>,ÀZ,YX,XC,:V,KB,?N,QM,G<,H>,F?
+        set nolangremap
+      else
+        let g:bepo_enable=0
+        set langmap=
+      endif
+      endfunction
+      call ToggleBepo()
+      noremap <F12> :call ToggleBepo()<CR>
+
+      " }}}
+
+      " Search options {{{
+
+      " Ignore case on search
+      set ignorecase
+
+      " Ignore case unless there is an uppercase letter in the pattern
+      set smartcase
+
+      " Move cursor to the matched string
+      set incsearch
+
+      " Don't highlight matched strings
+      set nohlsearch
+      " }}}
+
+      " Text formatting {{{
+      " Set text width for automatic wrapping and highlighting of maximum column
+      set textwidth=80
+      " But don't automatically wrap text and comments to textwidth.
+      set formatoptions-=tc
+      " Also don't display lines longer than the screen wraped, make me scroll
+      set nowrap
+      " Color the column *after* textwidth
+      set colorcolumn=+1
+      " }}}
+
+      " Persistent backups, undo files and cursor position {{{
+      set backup
+      set backupdir=~/.vimtmp/backup
+      set directory=~/.vimtmp/temp//
+
+      silent !mkdir -p ~/.vimtmp/backup
+      silent !mkdir -p ~/.vimtmp/temp
+
+      if version >= 703
+      set undofile
+      set undodir=~/.vimtmp/undo
+      silent !mkdir -p ~/.vimtmp/undo
+      endif
+
+      " From the Vim wiki, restore cursor position
+      " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+      function! ResCur()
+      if line("'\"") <= line("$")
+        normal! g`"
+        return 1
+      endif
+      endfunction
+
+      augroup resCur
+      autocmd!
+      autocmd BufWinEnter * call ResCur()
+      augroup END
+      " }}}
+
+      " Syntax highlighting {{{
+      if has('syntax')
+      " Add a rule to highlight trailing whitespaces on every colorscheme we load
+      autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen
+      autocmd ColorScheme * match ExtraWhitespace /\s\+$/
+
+      syntax enable
+
+      " Truecolor handling
+      set t_8f=[38;2;%lu;%lu;%lum
+      set t_8b=[48;2;%lu;%lu;%lum
+      set termguicolors
+
+      " Colorscheme
+      set background=dark
+      let g:one_allow_italics=1
+      colorscheme one
+      let g:airline_theme='one'
+
+      function! SwitchColorscheme()
+        " Switch between a light and a dark colorscheme
+        if &background ==# 'dark'
+            set background=light
+        else
+            set background=dark
+        endif
+      endfunction
+      noremap <F2> :call SwitchColorscheme()<CR>
+      endif
+      " }}}
+
+      " Indentation options {{{
+
+      " The display length of a tab character
+      set tabstop=8
+
+      " The number of spaces inserted when you press tab to indent with spaces
+      set softtabstop=4
+
+      " The number of spaces inserted/removed when using < or >
+      set shiftwidth=4
+
+      " Insert spaces instead of tabs
+      set expandtab
+
+      " When tabbing manually, use shiftwidth instead of tabstop and softtabstop
+      set smarttab
+
+      " Set basic indenting (i.e. copy the indentation of the previous line)
+      " When filetype detection didn't find a fancy indentation scheme
+      set autoindent
+
+      " C indentation rules. See :help cinoptions-values for details
+      set cinoptions=(0,u0,U0,t0,g0,N-s
+
+      " }}}
+
+      " Custom bindings {{{
+      " English spelling
+      noremap <F9> :!aspell -d english -e -c %<CR>
+      " French spelling
+      noremap <F10> :!aspell -d francais -e -c %<CR>
+
+      " Binding to paste mode (might not be needed with the bracketed-paste plugin)
+      noremap <F11> :set paste!<CR>
+      inoremap <F11> <C-O>:set paste!<CR>
+
+      " From Kalenz's Vim config: change pane with space key
+      nnoremap <Space> <C-w>
+      nnoremap <Space><Space> <C-w>w
+
+      " From halfr's: save with space key
+      nnoremap <Space><Return> :w<Return>
+      nnoremap <Space><Backspace> :x<Return>
+
+      " Bindings to save through sudo
+      cnoreabbrev w!! w suda://%
+      nmap <Space>! :w!!<Return>
+
+      " Save and run make command on F5
+      nnoremap <F5> :w<Return>:make<Return>
+
+      " In addition to <leader>l and <leader>q from vim-togglelist, these bindings
+      " jump to next and previous item in either list
+      nnoremap <leader>nl :lnext<CR>
+      nnoremap <leader>pl :lprev<CR>
+      nnoremap <leader>nq :cnext<CR>
+      nnoremap <leader>pq :cprev<CR>
+
+      " One keystroke closer to command mode
+      noremap ; :
+      " More sensible yank bindings
+      nnoremap Y y$
+      " }}}
+    '';
+  };
+
+  xdg.configFile."nvim/coc-settings.json".text = ''
+      {
+        "python.formatting.provider": "black",
+        "python.jediEnabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.pythonPath": "nvim-python3",
+
+        "diagnostic.virtualText": true,
+        "diagnostic.virtualTextPrefix": "  ~> ",
+
+        "rust.clippy_preference": "opt-in",
+
+        "suggest.enablePreview": true,
+        "suggest.enablePreselect": true,
+
+        "codeLens.enable": true,
+        "codeLens.separator": "‣",
+
+        "highlight.colorNames.enable": false,
+
+        "languageserver": {
+          "nix": {
+              "command": "rnix-lsp",
+              "filetypes": ["nix"]
+          }
+        }
+      }
+  '';
+}
