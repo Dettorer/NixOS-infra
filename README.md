@@ -28,6 +28,7 @@ options for more details).
 - `home-config/` is the home-manager configuration for my "dettorer" user (it's
   imported by `common/users.nix`.
 - `my-packages/` contains the very few custom packages I want which are not
-  already in nixpkgs.
+  already in nixpkgs. The whole folder is used as an
+  [overlay](https://nixos.wiki/wiki/Overlays) on nixpkgs.
 - `secrets/` contains secret files encrypt with
   [git-crypt](https://github.com/AGWA/git-crypt).
