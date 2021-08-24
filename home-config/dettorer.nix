@@ -3,7 +3,7 @@
     ./neovim.nix
     ./zsh.nix
     ./tmux.nix
-    ./xsession.nix
-    ./alacritty.nix
+    ./xsession.nix # TODO: not on server
+    ./alacritty.nix # TODO: not on server
   ];
 }
