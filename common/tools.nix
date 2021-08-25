@@ -22,7 +22,14 @@ rec {
     git
     pdftk
     file
+
+    # monitoring
+    htop
+    nmon
+    smartmontools
   ];
+
+  programs.iftop.enable = true;
 
   environment.variables = {
     PAGER = "${pkgs.most}/bin/most";
