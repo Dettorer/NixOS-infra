@@ -4,7 +4,6 @@
 
 - emacs/tuareg
 - add colors to polybar
-- add transparency
 - add my ssh key as a secret
 
 ## Long-term
