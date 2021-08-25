@@ -4,7 +4,7 @@ let
   cfg = config.my.roles.printing;
 in {
   options.my.roles.printing = {
-    enable = lib.mkEnableOption "Gaming client";
+    enable = lib.mkEnableOption "Printers handling";
   };
 
   config = lib.mkIf cfg.enable {
