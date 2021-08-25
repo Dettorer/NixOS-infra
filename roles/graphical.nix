@@ -59,6 +59,7 @@ in {
       xournalpp
       pentablet-driver
       evince
+      obs-studio
     ];
   };
 }
