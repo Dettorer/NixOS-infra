@@ -3,7 +3,7 @@
 let
   home-manager = builtins.fetchGit {
     url = "https://github.com/nix-community/home-manager.git";
-    ref = "release-21.05";
+    ref = "master";
   };
 in
 {
