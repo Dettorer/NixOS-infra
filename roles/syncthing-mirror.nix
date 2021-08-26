@@ -16,13 +16,14 @@ in {
 
       cert = "${pkgs.writeText "cert.pem" secrets.syncthing.devices."${machineName}".cert}";
       key = "${pkgs.writeText "key.pem" secrets.syncthing.devices."${machineName}".key}";
+      guiAddress = "${secrets.syncthing.devices."${machineName}".guiAddress}";
 
       overrideDevices = true;
       overrideFolders = true;
 
       extraOptions.gui.theme = "black";
 
-      openDefaultPorts = true;
+      openDefaultPorts = true;  # TODO: maybe open other ports? the gui interface seems unreachable
 
       devices = builtins.mapAttrs (name: info: {
         inherit name;
