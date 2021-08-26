@@ -2,7 +2,6 @@
 
 ## Install and configure
 
-- emacs/tuareg
 - add colors to polybar
 - add my ssh key as a secret
 

@@ -11,7 +11,14 @@
       ocaml="rlwrap ocaml";
 
       ls = "ls --color -hF";
-      emacs = "TERM=alacritty-24bit emacs -nw"; # TODO: clean
+
+      # one day I'll understand how to properly announce to any application if
+      # my terminal supports truecolor, but not today.
+      # if the current terminal is alacritty, announce alacritty-direct instead
+      # to emacs, because that's the easiest way to convince it to use
+      # truecolor. Why alacritty's terminfo isn't enough for emacs (and tmux for
+      # that matter) remains a mistery to me.
+      emacs = "if [[ $TERM == alacritty ]]; then TERM=alacritty-direct emacs -nw; else emacs -nw; fi";
 
       memfree = "killall firefox";
 

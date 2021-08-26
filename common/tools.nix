@@ -22,6 +22,7 @@ rec {
     git
     pdftk
     file
+    emacs
 
     # monitoring
     htop
