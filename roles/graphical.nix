@@ -140,6 +140,8 @@ in {
       pentablet-driver
       evince
       obs-studio
+      mpv
+      vlc
     ];
   };
 }
