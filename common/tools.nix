@@ -23,6 +23,8 @@ rec {
     pdftk
     file
     emacs
+    ocaml
+    (python3.withPackages (ps: [ ps.ipython ]))
 
     # monitoring
     htop
