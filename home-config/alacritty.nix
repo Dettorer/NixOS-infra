@@ -1,67 +1,13 @@
 { pkgs, ... }:
 
 let
-  # TODO: factorize colors across the whole nixos config
-  OneHalfDark = {
-    primary = {
-      background = "0x121317";
-      foreground = "0xdcdfe4";
-    };
-
-    normal = {
-      black = "0x282c34";
-      red = "0xe06c75";
-      green = "0x98c379";
-      yellow = "0xe5c07b";
-      blue = "0x61afef";
-      magenta = "0xc678dd";
-      cyan = "0x56b6c2";
-      white = "0xdcdfe4";
-    };
-
-    bright = {
-      black = "0x282c34";
-      red = "0xe06c75";
-      green = "0x98c379";
-      yellow = "0xe5c07b";
-      blue = "0x61afef";
-      magenta = "0xc678dd";
-      cyan = "0x56b6c2";
-      white = "0xdcdfe4";
-    };
-  };
-  OneHalfLight = {
-    primary = {
-      background = "0xfafafa";
-      foreground = "0x383a42";
-    };
-    normal = {
-      black = "0x383a42";
-      red = "0xe45649";
-      green = "0x50a14f";
-      yellow = "0xc18401";
-      blue = "0x0184bc";
-      magenta = "0xa626a4";
-      cyan = "0x0997b3";
-      white = "0xfafafa";
-    };
-    bright = {
-      black = "0x383a42";
-      red = "0xe45649";
-      green = "0x50a14f";
-      yellow = "0xc18401";
-      blue = "0x0184bc";
-      magenta = "0xa626a4";
-      cyan = "0x0997b3";
-      white = "0xfafafa";
-    };
-  };
+  my = import ../.;
 in
 {
   programs.alacritty = {
     enable = true;
     settings = {
-      colors = OneHalfDark;
+      colors = my.colorschemes.OneHalfDark;
       background_opacity = 0.97;
 
       font.normal.family = "DejaVu Sans Mono Nerd Font";

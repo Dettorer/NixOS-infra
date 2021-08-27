@@ -5,6 +5,7 @@ rec {
   common = import ./common;
   roles = import ./roles;
   secrets = import ./secrets.nix;
+  colorschemes = import ./colorschemes.nix;
 
   modules = {
     imports = [
