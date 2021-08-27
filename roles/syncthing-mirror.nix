@@ -16,7 +16,6 @@ in {
 
       cert = "${pkgs.writeText "cert.pem" secrets.syncthing.devices."${machineName}".cert}";
       key = "${pkgs.writeText "key.pem" secrets.syncthing.devices."${machineName}".key}";
-      guiAddress = "${secrets.syncthing.devices."${machineName}".guiAddress}";
 
       overrideDevices = true;
       overrideFolders = true;
