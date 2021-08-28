@@ -3,6 +3,55 @@
 let
   mod = "Mod4";
   defaultTerminal = "${pkgs.alacritty}/bin/alacritty"; # TODO: factorize the prefered terminal accross the whole config
+
+  keymap-switch = pkgs.writeShellScriptBin "keymap-switch" ''
+    alias grep=${pkgs.gnugrep}/bin/grep
+    alias sed=${pkgs.gnused}/bin/sed
+    alias setxkbmap=${pkgs.xorg.setxkbmap}/bin/setxkbmap
+
+    # Get current keymap
+    get_keymap() {
+        QUERY="setxkbmap -query"
+        KEYMAP=`eval $QUERY | grep 'layout' | sed 's/^layout:     //'`
+        VARIANT=`eval $QUERY | grep 'variant' | sed 's/^variant:    //'`
+    }
+
+    # Switch between keymaps in this order :
+    # bépo
+    #   ↓
+    # qwerty
+    #   ↓
+    # azerty
+    #   ↓
+    # dvorak
+    cycle_switch() {
+        case $KEYMAP in
+        "us") NEWMAP="fr oss" ;;
+        "fr")
+            case $VARIANT in
+                "oss") NEWMAP="dvorak" ;;
+                "bepo") NEWMAP="us intl" ;;
+                *) NEWMAP="fr bepo" ;; # No idea what is going on, fallback on bepo
+            esac ;;
+        "dvorak") NEWMAP="fr bepo" ;;
+        *) NEWMAP="fr bepo" ;; # No idea what is going on, fallback on bepo
+        esac
+    }
+
+    if [[ $# -gt 0 ]]
+    then
+        NEWMAP=$*
+    else
+        get_keymap
+        cycle_switch
+    fi
+
+    # Change keymap
+    eval "setxkbmap $NEWMAP"
+
+    # setxkbmap broke the caps lock / escape swap
+    setxkbmap -option caps:swapescape
+  '';
 in {
   imports = [ ./polybar.nix ];
 
@@ -14,10 +63,6 @@ in {
     theme = "onedark";
   };
 
-  xdg.configFile."i3/scripts/keymap_switch.sh" = {
-    source = ./i3/keymap_switch.sh; # TODO: doesn't work yet, must patch to use nix store for setxkbmap, grep and sed
-    executable = true;
-  };
   xsession.windowManager.i3 = {
     enable = true;
 
@@ -146,8 +191,8 @@ in {
         "${mod}+Shift+P" = "exit";
 
         # keymap transitions TODO: package this script
-        "${mod}+F1" = "exec ~/.config/i3/scripts/keymap/keymap_switch.sh";
-        "${mod}+F2" = "exec ~/.config/i3/scripts/keymap/keymap_switch.sh fr bepo";
+        "${mod}+F1" = "exec ${keymap-switch}/bin/keymap-switch";
+        "${mod}+F2" = "exec ${keymap-switch}/bin/keymap-switch fr bepo";
 
         # screen lock
         "${mod}+l" = "exec ${pkgs.i3lock}/bin/i3lock -i ~/images/wallpapers/lock_wallpaper.png"; # TODO: handle the image path
