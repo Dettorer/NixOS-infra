@@ -10,4 +10,5 @@ self: super: {
     else
       super.mosh
   );
+  geany-plugin-m68k = super.qt5.callPackage ./geany-plugin-m68k {};
 }
