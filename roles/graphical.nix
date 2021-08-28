@@ -44,6 +44,7 @@ in {
 
     fonts.fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "DejaVuSansMono" "Iosevka" "Meslo" ]; })
+      unifont_upper
     ];
 
     services.picom = {
