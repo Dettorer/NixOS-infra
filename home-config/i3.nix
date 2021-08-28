@@ -14,6 +14,10 @@ in {
     theme = "onedark";
   };
 
+  xdg.configFile."i3/scripts/keymap_switch.sh" = {
+    source = ./i3/keymap_switch.sh; # TODO: doesn't work yet, must patch to use nix store for setxkbmap, grep and sed
+    executable = true;
+  };
   xsession.windowManager.i3 = {
     enable = true;
 
@@ -141,9 +145,9 @@ in {
         # exit i3 (logs you out of your X session)
         "${mod}+Shift+P" = "exit";
 
-        # keymap transitions TODO: make my scripts a derivation
-        "${mod}+F1" = "exec ~/configuration/scripts/keymap/keymap_switch.sh";
-        "${mod}+F2" = "exec ~/configuration/scripts/keymap/keymap_switch.sh fr bepo";
+        # keymap transitions TODO: package this script
+        "${mod}+F1" = "exec ~/.config/i3/scripts/keymap/keymap_switch.sh";
+        "${mod}+F2" = "exec ~/.config/i3/scripts/keymap/keymap_switch.sh fr bepo";
 
         # screen lock
         "${mod}+l" = "exec ${pkgs.i3lock}/bin/i3lock -i ~/images/wallpapers/lock_wallpaper.png"; # TODO: handle the image path
