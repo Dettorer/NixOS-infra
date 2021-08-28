@@ -133,6 +133,7 @@ in {
     environment.systemPackages = with pkgs; [
       thunderbird
       firefox
+      chromium
       teams
       discord
       libreoffice
