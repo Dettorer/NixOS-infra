@@ -1,4 +1,8 @@
+let
+  my = import ../.;
+in
 {
+  nixpkgs.overlays = [ my.pkgs ]; # Add my own custom packages
   imports = [
     ./neovim.nix
     ./emacs.nix
