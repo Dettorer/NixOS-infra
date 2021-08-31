@@ -130,6 +130,8 @@ in {
 
     programs.nm-applet.enable = true;
 
+    programs.dconf.enable = true;
+
     environment.systemPackages = with pkgs; [
       thunderbird
       firefox
@@ -145,6 +147,8 @@ in {
       mpv
       vlc
       nitrogen
+
+      gnome.adwaita-icon-theme
     ];
   };
 }
