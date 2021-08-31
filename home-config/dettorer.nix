@@ -10,6 +10,6 @@ in
     ./tmux.nix
     ./xsession.nix # TODO: not on server
     ./alacritty.nix # TODO: not on server
-    ./geany.nix # TODO: not on server
+    ./epita.nix
   ];
 }
