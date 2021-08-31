@@ -147,6 +147,8 @@ in {
       mpv
       vlc
       nitrogen
+      arandr
+      gnome.eog
 
       gnome.adwaita-icon-theme
     ];
