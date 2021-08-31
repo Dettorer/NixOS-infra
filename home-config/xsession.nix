@@ -12,5 +12,8 @@
   xsession = {
     enable = true;
     numlock.enable = true;
+    initExtra = ''
+      ${pkgs.nitrogen}/bin/nitrogen --restore
+    '';
   };
 }

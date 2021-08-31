@@ -144,6 +144,7 @@ in {
       obs-studio
       mpv
       vlc
+      nitrogen
     ];
   };
 }
