@@ -152,6 +152,8 @@ in {
       nitrogen
       arandr
       gnome.eog
+      keepassx2
+      pavucontrol
 
       gnome.adwaita-icon-theme
     ];
