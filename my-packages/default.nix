@@ -11,6 +11,8 @@ self: super: {
       super.mosh
   );
 
+  # pentablet-driver = super.qt5.callPackage ./pentablet-driver {}; # TODO: WIP
+
   # TODO: maybe only use an overlay for packages that I override (like mosh) and
   # not for new packages like those after this comment, it may be cleaner to
   # expose those through a my.pkgs module instead.
