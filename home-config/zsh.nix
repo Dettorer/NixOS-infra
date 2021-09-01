@@ -161,10 +161,17 @@
             rscp --inplace dettorer@dettorer.net:~/quickfetch/ "$dest"
           }
         '';
+        keybinds = ''
+          autoload edit-command-line
+          zle -N edit-command-line
+          bindkey "^[[3~" delete-char
+          bindkey "^[e" edit-command-line
+        ''; # TODO: not sure why this part is needed, I didn't have in archlinux, different defaults?
       in
       builtins.concatStringsSep "\n" [
         completion_styles
         functions
+        keybinds
         (builtins.readFile ./p10k.zsh)
       ];
   };
