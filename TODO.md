@@ -2,8 +2,9 @@
 
 ## Install and configure
 
-- add colors to polybar
 - add my ssh key as a secret
+- brightness and redshift
+- fix polybar modules (see todos in home-config/polybar.nix)
 
 ## Long-term
 
