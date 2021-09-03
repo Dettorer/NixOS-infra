@@ -9,7 +9,7 @@ in
 {
   users.users.dettorer = {
     isNormalUser = true;
-    extraGroups = [ "users" "wheel" "networkmanager" "scanner" "lp" ];
+    extraGroups = [ "users" "wheel" "networkmanager" "scanner" "lp" "video" ];
   };
 
   imports = [ (import "${home-manager}/nixos") ];

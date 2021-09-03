@@ -15,6 +15,8 @@ in
     my.modules
   ];
 
+  hardware.acpilight.enable = true;
+
   networking = {
     hostName = "rivamar";
     useDHCP = false;

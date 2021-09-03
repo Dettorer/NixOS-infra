@@ -138,26 +138,26 @@ in {
     boot.kernelModules = [ "v4l2loopback" ];
 
     environment.systemPackages = with pkgs; [
-      thunderbird
-      firefox
-      chromium
-      teams
-      discord
-      libreoffice
-      hunspellDicts.fr-moderne
-      xournalpp
-      pentablet-driver
-      evince
-      obs-studio
-      mpv
-      vlc
-      nitrogen
       arandr
-      gnome.eog
-      keepassx2
-      pavucontrol
-
+      chromium
+      discord
+      evince
+      firefox
       gnome.adwaita-icon-theme
+      gnome.eog
+      hunspellDicts.fr-moderne
+      keepassx2
+      libreoffice
+      mpv
+      nitrogen
+      obs-studio
+      pavucontrol
+      pentablet-driver
+      redshift
+      teams
+      thunderbird
+      vlc
+      xournalpp
     ];
   };
 }

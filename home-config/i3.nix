@@ -153,13 +153,13 @@ in {
         "${mod}+o" = "mode \"resize\"";
 
         # Redshift and luminosity play
-        "${mod}+Shift+F5" = "exec xbacklight -set 5";
-        "${mod}+F5" = "exec xbacklight -set 30";
-        "${mod}+F6" = "exec xbacklight -set 100";
-        "${mod}+Shift+F6" = "exec xbacklight -set 0";
-        "${mod}+F7" = "exec redshift -P -O 3000K";
-        "${mod}+shift+F7" = "exec redshift -P -O 2000K";
-        "${mod}+F8" = "exec redshift -P -O 6500K";
+        "${mod}+Shift+F5" = "exec ${pkgs.acpilight}/bin/xbacklight -set 5 -steps 5 -time 100";
+        "${mod}+F5" = "exec ${pkgs.acpilight}/bin/xbacklight -set 30 -steps 5 -time 100";
+        "${mod}+F6" = "exec ${pkgs.acpilight}/bin/xbacklight -set 100 -steps 5 -time 100";
+        "${mod}+Shift+F6" = "exec ${pkgs.acpilight}/bin/xbacklight -set 0 -steps 5 -time 100";
+        "${mod}+F7" = "exec ${pkgs.redshift}/bin/redshift -P -O 3000K";
+        "${mod}+shift+F7" = "exec ${pkgs.redshift}/bin/redshift -P -O 2000K";
+        "${mod}+F8" = "exec ${pkgs.redshift}/bin/redshift -P -O 6500K";
 
         # Python!
         "${mod}+j" = "exec \"${defaultTerminal} -e python\"";
