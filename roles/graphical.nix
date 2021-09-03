@@ -128,6 +128,8 @@ in {
       };
     };
 
+    services.gnome.gnome-keyring.enable = true; # Needed for example for protonmail-bridge
+
     programs.nm-applet.enable = true;
 
     programs.dconf.enable = true;

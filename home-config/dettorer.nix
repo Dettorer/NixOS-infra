@@ -4,12 +4,13 @@ in
 {
   nixpkgs.overlays = [ my.pkgs ]; # Add my own custom packages
   imports = [
-    ./neovim.nix
+    ./alacritty.nix # TODO: not on server
     ./emacs.nix
-    ./zsh.nix
+    ./epita.nix
+    ./neovim.nix
+    ./mails.nix
     ./tmux.nix
     ./xsession.nix # TODO: not on server
-    ./alacritty.nix # TODO: not on server
-    ./epita.nix
+    ./zsh.nix
   ];
 }
