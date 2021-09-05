@@ -29,4 +29,9 @@ rec {
       };
     };
   };
+
+  home.file = {
+    ".ssh/id_rsa".source = ../secrets/ssh/dettorer/id_rsa;
+    ".ssh/id_ed25519".source = ../secrets/ssh/dettorer/id_ed25519;
+  };
 }
