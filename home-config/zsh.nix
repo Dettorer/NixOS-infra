@@ -49,7 +49,7 @@
       
       vis = "vim -S Session.vim";
 
-      ssh-add = "ssh-add ~/.ssh/id_ed25519 && ssh-add -c ~/.ssh/id_rsa";
+      add-ssh = "ssh-add ~/.ssh/id_ed25519 && ssh-add -c ~/.ssh/id_rsa";
     };
 
     history = {
