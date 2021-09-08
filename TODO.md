@@ -5,6 +5,8 @@
 - fix polybar modules (see todos in home-config/polybar.nix)
 - epita's ldap authentification? (make it available through a simple command, do
   not authenticate by default)
+- configure git (and add git-crypt btw)
+- vscode? (with the *real* neovim plugin)
 
 ## Long-term
 
