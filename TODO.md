@@ -8,6 +8,7 @@
 - configure git (and add git-crypt btw)
 - vscode? (with the *real* neovim plugin)
 - openning links in alacritty seems broken, xdg-open problem?
+- eduroam
 
 ## Long-term
 
