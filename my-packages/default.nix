@@ -6,52 +6,49 @@ self: super: {
   # added via an overlay)
   mosh = (
     if super.mosh.version <= "1.3.2" then
-      super.callPackage ./mosh-truecolor {}
+    super.callPackage ./mosh-truecolor {}
     else
-      super.mosh
-  );
+    super.mosh
+    );
 
   # pentablet-driver = super.qt5.callPackage ./pentablet-driver {}; # TODO: WIP
 
-  # TODO: maybe only use an overlay for packages that I override (like mosh) and
-  # not for new packages like those after this comment, it may be cleaner to
-  # expose those through a my.pkgs module instead.
+  _my = {
+    # Geany with an m68k compiler/emulator/debugger plugin
+    geany-plugin-m68k = super.qt5.callPackage ./geany-plugin-m68k {};
+    geany-epita = super.geany.overrideAttrs (old: rec {
+      postInstall = ''
+        cp ${self._my.geany-plugin-m68k}/editor/filetypes.asm $out/share/geany/filedefs/filetypes.asm
+      '';
 
-  # Geany with an m68k compiler/emulator/debugger plugin
-  geany-plugin-m68k = super.qt5.callPackage ./geany-plugin-m68k {};
-  geany-epita = super.geany.overrideAttrs (old: rec {
-    postInstall = ''
-      cp ${self.geany-plugin-m68k}/editor/filetypes.asm $out/share/geany/filedefs/filetypes.asm
-    '';
+      meta = old.meta // {
+        # geany-plugin-m68k is only supported on Linux
+        platforms = self.lib.platforms.linux;
+      };
+    });
 
-    meta = old.meta // {
-      # geany-plugin-m68k is only supported on Linux
-      platforms = self.lib.platforms.linux;
-    };
-  });
+    # A script to cycle between bépo -> azerty -> qwerty -> dvorak keymaps
+    keymap-switch = super.writeShellScriptBin "keymap-switch" ''
+      alias grep=${self.gnugrep}/bin/grep
+      alias sed=${self.gnused}/bin/sed
+      alias setxkbmap=${self.xorg.setxkbmap}/bin/setxkbmap
 
-  # A script to cycle between bépo -> azerty -> qwerty -> dvorak keymaps
-  keymap-switch = super.writeShellScriptBin "keymap-switch" ''
-    alias grep=${self.gnugrep}/bin/grep
-    alias sed=${self.gnused}/bin/sed
-    alias setxkbmap=${self.xorg.setxkbmap}/bin/setxkbmap
-
-    # Get current keymap
-    get_keymap() {
+      # Get current keymap
+      get_keymap() {
         QUERY="setxkbmap -query"
         KEYMAP=`eval $QUERY | grep 'layout' | sed 's/^layout:     //'`
         VARIANT=`eval $QUERY | grep 'variant' | sed 's/^variant:    //'`
-    }
+      }
 
-    # Switch between keymaps in this order :
-    # bépo
-    #   ↓
-    # qwerty
-    #   ↓
-    # azerty
-    #   ↓
-    # dvorak
-    cycle_switch() {
+      # Switch between keymaps in this order :
+      # bépo
+      #   ↓
+      # qwerty
+      #   ↓
+      # azerty
+      #   ↓
+      # dvorak
+      cycle_switch() {
         case $KEYMAP in
         "us") NEWMAP="fr oss" ;;
         "fr")
@@ -63,21 +60,22 @@ self: super: {
         "dvorak") NEWMAP="fr bepo" ;;
         *) NEWMAP="fr bepo" ;; # No idea what is going on, fallback on bepo
         esac
-    }
+      }
 
-    if [[ $# -gt 0 ]]
-    then
+      if [[ $# -gt 0 ]]
+      then
         NEWMAP=$*
-    else
+      else
         get_keymap
         cycle_switch
-    fi
+      fi
 
-    # Change keymap
-    eval "setxkbmap $NEWMAP"
+      # Change keymap
+      eval "setxkbmap $NEWMAP"
 
-    # setxkbmap broke the caps lock / escape swap
-    setxkbmap -option caps:swapescape
-  '';
-  my.via = super.callPackage ./via {}; # TODO: get rid of that horrible thing ASAP
+      # setxkbmap broke the caps lock / escape swap
+      setxkbmap -option caps:swapescape
+    '';
+    via = super.callPackage ./via {}; # TODO: get rid of that horrible thing ASAP
+  };
 }

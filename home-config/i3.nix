@@ -142,8 +142,8 @@ in {
         "${mod}+Shift+P" = "exit";
 
         # keymap transitions TODO: package this script
-        "${mod}+F1" = "exec ${pkgs.keymap-switch}/bin/keymap-switch";
-        "${mod}+F2" = "exec ${pkgs.keymap-switch}/bin/keymap-switch fr bepo";
+        "${mod}+F1" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch";
+        "${mod}+F2" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch fr bepo";
 
         # screen lock
         "${mod}+l" = "exec ${pkgs.i3lock}/bin/i3lock -i ~/images/wallpapers/lock_wallpaper.png"; # TODO: handle the image path

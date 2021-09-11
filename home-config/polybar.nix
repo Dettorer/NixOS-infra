@@ -42,7 +42,7 @@ in
         "%%powermenu%%"
       ]
       [
-        "${pkgs.keymap-switch}/bin/keymap-switch"
+        "${pkgs._my.keymap-switch}/bin/keymap-switch"
         "${xkeyboard}/bin/xkeyboard"
         "${powermenu}/bin/powermenu"
       ]
