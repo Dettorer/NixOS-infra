@@ -79,4 +79,5 @@ self: super: {
     # setxkbmap broke the caps lock / escape swap
     setxkbmap -option caps:swapescape
   '';
+  my.via = super.callPackage ./via {}; # TODO: get rid of that horrible thing ASAP
 }
