@@ -7,7 +7,6 @@
   not authenticate by default)
 - vscode? (with the *real* neovim plugin)
 - openning links in alacritty seems broken, xdg-open problem?
-- eduroam
 - add swap to enable hybrid sleep?
 
 ## Long-term
