@@ -42,10 +42,15 @@ in {
       };
     };
 
-    fonts.fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "DejaVuSansMono" "Iosevka" "Meslo" ]; })
-      unifont_upper
-    ];
+    fonts = {
+      enableDefaultFonts = true;
+      enableGhostscriptFonts = true;
+      fonts = with pkgs; [
+        corefonts
+        (nerdfonts.override { fonts = [ "DejaVuSansMono" "Iosevka" "Meslo" ]; })
+        unifont_upper
+      ];
+    };
 
     services.picom = {
       enable = true;
