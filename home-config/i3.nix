@@ -141,7 +141,6 @@ in {
         # exit i3 (logs you out of your X session)
         "${mod}+Shift+P" = "exit";
 
-        # keymap transitions TODO: package this script
         "${mod}+F1" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch";
         "${mod}+F2" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch fr bepo";
 
@@ -186,6 +185,7 @@ in {
 
       startup = [
         { command = "systemctl --user restart polybar"; always = true; notification = false; }
+        { command = "i3-msg workspace 1"; always = false; notification = false; }
       ];
 
       bars = [ ] ;  # Bars handled by polybar
