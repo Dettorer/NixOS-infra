@@ -6,17 +6,16 @@
     withNodeJs = true;
     withPython3 = true;
     extraPackages = with pkgs; [
-      (python3.withPackages (ps: with ps; [
-        black
-        flake8
-      ]))
       rnix-lsp
       opam
       git
     ];
 
     extraPython3Packages = (ps: with ps; [
+      black
+      flake8
       jedi
+      pylint
     ]);
 
     plugins = with pkgs.vimPlugins; [
