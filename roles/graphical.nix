@@ -153,6 +153,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       arandr
+      barrier
       chromium
       discord
       evince
