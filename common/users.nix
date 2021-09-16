@@ -9,7 +9,15 @@ in
 {
   users.users.dettorer = {
     isNormalUser = true;
-    extraGroups = [ "users" "wheel" "networkmanager" "scanner" "lp" "video" ];
+    extraGroups = [
+      "libvirtd"
+      "lp"
+      "scanner"
+      "users"
+      "vboxusers"
+      "video"
+      "wheel"
+    ];
   };
 
   imports = [ (import "${home-manager}/nixos") ];

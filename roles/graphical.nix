@@ -142,6 +142,15 @@ in {
     boot.extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
     boot.kernelModules = [ "v4l2loopback" ];
 
+    virtualisation = {
+      spiceUSBRedirection.enable = true;
+      libvirtd = {
+        enable = true;
+        qemuPackage = pkgs.qemu_kvm;
+        onBoot = "ignore";
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       arandr
       chromium
@@ -161,6 +170,7 @@ in {
       redshift
       teams
       thunderbird
+      virt-manager
       vlc
       xournalpp
     ];
