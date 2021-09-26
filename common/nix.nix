@@ -5,6 +5,10 @@ let
 in
 {
   nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
     autoOptimiseStore = true;
     trustedUsers = [ "@wheel" ];
     gc.automatic = true;
