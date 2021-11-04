@@ -49,6 +49,8 @@
 
       push.default = "simple";
       pull.ff = "only";
+
+      init.defaultBranch = "main";
     };
   };
 }
