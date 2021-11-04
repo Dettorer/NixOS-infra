@@ -174,6 +174,7 @@ in {
       thunderbird
       virt-manager
       vlc
+      xclip
       xournalpp
     ];
   };
