@@ -25,6 +25,7 @@ rec {
     emacs
     ocaml
     (python3.withPackages (ps: [ ps.ipython ]))
+    unzip
 
     # monitoring
     htop
