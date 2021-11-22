@@ -14,18 +14,18 @@ rec {
   ];
 
   environment.systemPackages = with pkgs; [
+    (python3.withPackages (ps: [ ps.ipython ]))
+    alacritty.terminfo
+    emacs
+    file
+    git
     most
+    ocaml
+    pdftk
+    tree
+    unzip
     wget
     zsh
-    alacritty.terminfo
-    tree
-    git
-    pdftk
-    file
-    emacs
-    ocaml
-    (python3.withPackages (ps: [ ps.ipython ]))
-    unzip
 
     # monitoring
     htop
