@@ -19,7 +19,7 @@ in
           regex = ''(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>" {-}\\^⟨⟩`]+'';
           command = "${pkgs.xdg-utils}/bin/xdg-open";
           post_processing = true;
-          mouse.enable = true;
+          mouse.enabled = true;
           mouse.mods = "None";
           binding.key = "U";
           binding.mods = "Alt";
