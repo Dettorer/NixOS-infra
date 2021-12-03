@@ -19,6 +19,7 @@ rec {
     emacs
     file
     git
+    killall
     most
     ocaml
     pdftk
