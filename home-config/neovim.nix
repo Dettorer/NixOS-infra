@@ -109,26 +109,6 @@
       {
         plugin = coc-nvim;
         config = ''
-          " Extensions
-          let g:coc_global_extensions = [
-            \'coc-clangd',
-            \'coc-git',
-            \'coc-highlight',
-            \'coc-markdownlint',
-            \'coc-python',
-            \'coc-sh',
-            \'coc-texlab',
-            \'coc-xml',
-            \'coc-cmake',
-            \'coc-go',
-            \'coc-json',
-            \'coc-omnisharp',
-            \'coc-rls',
-            \'coc-sql',
-            \'coc-tsserver',
-            \'coc-yaml'
-          \]
-
           " Select autocompletion item with Tab and S-Tab, confirm with CR
           inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
           inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -155,6 +135,19 @@
           " execute "set rtp+=" . g:opamshare . "/merlin/vim"
         '';
       }
+      coc-clangd
+      coc-cmake
+      coc-git
+      coc-go
+      coc-highlight
+      coc-json
+      coc-markdownlint
+      coc-python
+      coc-rls
+      coc-texlab
+      coc-tsserver
+      coc-vimlsp
+      coc-yaml
       {
         plugin = ultisnips;
         config = ''
