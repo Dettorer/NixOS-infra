@@ -11,6 +11,7 @@ rec {
     "steam" "steam-original" "steam-runtime"
     "cnijfilter"
     "pentablet-driver"
+    "corefonts"
   ];
 
   environment.systemPackages = with pkgs; [
