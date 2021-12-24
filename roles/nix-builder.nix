@@ -8,6 +8,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    # TODO: remove morph when confident with the new flake workeflow
     environment.systemPackages = with pkgs; [ morph ];
   };
 }
