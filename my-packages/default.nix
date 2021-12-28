@@ -1,37 +1,37 @@
 # This is a nixpkgs overlay adds my own custom packages to pkgs (possibly
 # overriding some of them)
-self: super: {
+final: prev: {
   # Until upstream mosh decides to release a new version, use a more recent
   # commit that has truecolor support (pkgs.mosh-truecolor is a custom package
   # added via an overlay)
   mosh = (
-    if super.mosh.version <= "1.3.2" then
-    super.callPackage ./mosh-truecolor {}
+    if prev.mosh.version <= "1.3.2" then
+    prev.callPackage ./mosh-truecolor {}
     else
-    super.mosh
+    prev.mosh
     );
 
-  # pentablet-driver = super.qt5.callPackage ./pentablet-driver {}; # TODO: WIP
+  # pentablet-driver = prev.qt5.callPackage ./pentablet-driver {}; # TODO: WIP
 
   _my = {
     # Geany with an m68k compiler/emulator/debugger plugin
-    geany-plugin-m68k = super.qt5.callPackage ./geany-plugin-m68k {};
-    geany-epita = super.geany.overrideAttrs (old: rec {
+    geany-plugin-m68k = prev.qt5.callPackage ./geany-plugin-m68k {};
+    geany-epita = prev.geany.overrideAttrs (old: rec {
       postInstall = ''
-        cp ${self._my.geany-plugin-m68k}/editor/filetypes.asm $out/share/geany/filedefs/filetypes.asm
+        cp ${final._my.geany-plugin-m68k}/editor/filetypes.asm $out/share/geany/filedefs/filetypes.asm
       '';
 
       meta = old.meta // {
         # geany-plugin-m68k is only supported on Linux
-        platforms = self.lib.platforms.linux;
+        platforms = final.lib.platforms.linux;
       };
     });
 
     # A script to cycle between bépo -> azerty -> qwerty -> dvorak keymaps
-    keymap-switch = super.writeShellScriptBin "keymap-switch" ''
-      alias grep=${self.gnugrep}/bin/grep
-      alias sed=${self.gnused}/bin/sed
-      alias setxkbmap=${self.xorg.setxkbmap}/bin/setxkbmap
+    keymap-switch = prev.writeShellScriptBin "keymap-switch" ''
+      alias grep=${final.gnugrep}/bin/grep
+      alias sed=${final.gnused}/bin/sed
+      alias setxkbmap=${final.xorg.setxkbmap}/bin/setxkbmap
 
       # Get current keymap
       get_keymap() {
@@ -76,6 +76,6 @@ self: super: {
       # setxkbmap broke the caps lock / escape swap
       setxkbmap -option caps:swapescape
     '';
-    via = super.callPackage ./via {}; # TODO: get rid of that horrible thing ASAP
+    via = prev.callPackage ./via {}; # TODO: get rid of that horrible thing ASAP
   };
 }
