@@ -3,6 +3,7 @@
 rec {
   programs.ssh = {
     enable = true;
+
     matchBlocks = {
       # EPITA
       "git.cri.epita.fr" = {
@@ -28,6 +29,13 @@ rec {
         user = "phervot";
       };
     };
+
+    extraConfig = ''
+      AddKeysToAgent yes
+      IdentityFile ~/.ssh/id_ed25519
+      IdentityFile ~/.ssh/id_rsa
+      IdentitiesOnly yes
+    '';
   };
 
   home.file = {

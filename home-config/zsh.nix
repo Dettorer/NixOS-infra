@@ -47,8 +47,6 @@
       cp = "cp -i";
       
       vis = "vim -S Session.vim";
-
-      add-ssh = "ssh-add ~/.ssh/id_ed25519 && ssh-add -c ~/.ssh/id_rsa";
     };
 
     history = {
