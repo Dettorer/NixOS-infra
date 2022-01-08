@@ -152,7 +152,7 @@
         plugin = ultisnips;
         config = ''
           let g:UltiSnipsExpandTrigger="<c-j>"
-          let g:UltiSnipsSnippetDirectories=["plugged/UltiSnips/UltiSnips", "custom_snippets"]
+          let g:UltiSnipsSnippetDirectories=["plugged/UltiSnips/UltiSnips", "${./ultisnips_snippets}"]
         '';
       }
     ];

@@ -1,0 +1,50 @@
+# Inclusions
+snippet i
+#${2}include <${1}.h>${3}
+endsnippet
+
+snippet I
+#${2}include "${1:`Filename("$1")`}.h"${3}
+endsnippet
+
+# While loop
+snippet w
+while (${1}) {
+  ${2}
+}
+endsnippet
+
+# Main
+snippet 0m
+int main(void)
+{
+    ${1}
+
+    return (0);
+}
+endsnippet
+
+snippet 2m
+int main(int argc, char **argv)
+{
+    ${1}
+
+    return (0);
+}
+endsnippet
+
+# Guards
+snippet once "Include header once only guard" !
+#ifndef ${1:`!p
+if not snip.c:
+    import random, string
+    name = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()
+    snip.rv = ('%s' % name).upper()
+else:
+    snip.rv = snip.c`}
+# define $1
+
+${0}
+
+#endif /* !$1 */
+endsnippet

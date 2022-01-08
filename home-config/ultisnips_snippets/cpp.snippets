@@ -1,0 +1,37 @@
+# Inclusions
+snippet i
+#${2}include <${1}>${3}
+endsnippet
+
+snippet I
+#${2}include "${1:`Filename("$1")`}.hh"${3}
+endsnippet
+
+# C++ standard classes
+snippet ss
+std::string 
+endsnippet
+
+snippet sv
+std::vector<${1}>${2} 
+endsnippet
+
+snippet sm
+std::Vector<${1}, ${2}>${3} 
+endsnippet
+
+# Guards
+snippet once "Include header once only guard" !
+#ifndef ${1:`!p
+if not snip.c:
+    import random, string
+    name = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()
+    snip.rv = ('%s' % name).upper()
+else:
+    snip.rv = snip.c`}
+# define $1
+
+${0}
+
+#endif /* !$1 */
+endsnippet
