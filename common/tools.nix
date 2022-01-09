@@ -15,14 +15,11 @@ rec {
   ];
 
   environment.systemPackages = with pkgs; [
-    (python3.withPackages (ps: [ ps.ipython ]))
     alacritty.terminfo
     emacs
     file
-    git
     killall
     most
-    ocaml
     pdftk
     tree
     unzip
@@ -33,6 +30,15 @@ rec {
     htop
     nmon
     smartmontools
+
+    # development
+    (python3.withPackages (ps: [ ps.ipython ]))
+    cargo
+    clang
+    clang-tools
+    gcc
+    git
+    ocaml
   ];
 
   programs.iftop.enable = true;
