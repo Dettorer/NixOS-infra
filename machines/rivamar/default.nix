@@ -34,7 +34,6 @@ in
     printing.enable = true;
     syncthing-mirror.enable = true;
     magnet.enable = true;
-    nix-builder.enable = true; # TODO: maybe not for rivamar
   };
 
   nix.gc.options = "--delete-older-than 7d"; # default in common/nix.nix is higher
