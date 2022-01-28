@@ -8,7 +8,7 @@ in
     enable = true;
     settings = {
       colors = my.colorschemes.OneHalfDark;
-      background_opacity = 0.97;
+      window.opacity = 0.97;
 
       font.normal.family = "DejaVu Sans Mono Nerd Font";
       font.size = 6; # TODO: 6 on laptop, 9.5 on desktop
