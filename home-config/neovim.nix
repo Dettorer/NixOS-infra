@@ -83,10 +83,15 @@
           let g:vimtex_imaps_enabled=0
 
           " Ignore some latex warnings
-          let g:vimtex_quickfix_latexlog = {'overfull' : 0, 'font' : 0, 'underfull' : 0}
+          let g:vimtex_quickfix_ignore_filters = [
+            \ 'overfull',
+            \ 'font',
+            \ 'underfull',
+          \]
+
 
           " Do not conceal stuff
-          let g:tex_conceal=''\'''\'
+          let g:vimtex_syntax_conceal_disable = 1
           '';
       }
       {
