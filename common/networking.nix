@@ -9,7 +9,7 @@
 
     # Magnet VPN
     10.8.0.1	doublonville.magnet	doublonville
-    10.8.0.10	frimapic.magnet		frimapic
+    10.8.0.42	frimapic.magnet		frimapic
     10.8.0.30	rivamar.magnet		rivamar
 
     # Local home network
