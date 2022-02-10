@@ -39,6 +39,8 @@ rec {
     gcc
     git
     ocaml
+    pandoc
+    texlive.combined.scheme-small
   ];
 
   programs.iftop.enable = true;
