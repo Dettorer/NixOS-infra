@@ -5,14 +5,16 @@ let
 in
 {
   nix = {
-    package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    autoOptimiseStore = true;
-    trustedUsers = [ "@wheel" ];
     gc.automatic = true;
     gc.options = lib.mkDefault "--delete-older-than 14d";
+    package = pkgs.nixUnstable;
+    settings = {
+      auto-optimise-store = true;
+      trusted-users = [ "@wheel" ];
+    };
   };
 
   nixpkgs.overlays = [ my.pkgs ]; # Add my own custom packages
