@@ -78,17 +78,18 @@
           " When in doubt between plaintex and latex, default to latex
           let g:tex_flavor = 'latex'
 
-          " I redefine mappings in ftplugin/tex.vim
+          " I redefine normmal mode mappings in ftplugin/tex.vim
           let g:vimtex_mappings_enabled=0
+
+          " Deactivate insert mode mappings (TODO: reactivate but fix them)
           let g:vimtex_imaps_enabled=0
 
           " Ignore some latex warnings
           let g:vimtex_quickfix_ignore_filters = [
-            \ 'overfull',
-            \ 'font',
-            \ 'underfull',
-          \]
-
+          \ 'Overfull',
+          \ 'font',
+          \ 'Underfull'
+          \ ]
 
           " Do not conceal stuff
           let g:vimtex_syntax_conceal_disable = 1
@@ -431,6 +432,8 @@
 
         "highlight.colorNames.enable": false,
 
+        "texlab.path": "${pkgs.texlab}/bin/texlab",
+
         "languageserver": {
           "nix": {
               "command": "rnix-lsp",
@@ -438,5 +441,34 @@
           }
         }
       }
+  '';
+
+  # TODO: ideally find a way to dynamically change the vimtex command prefix
+  # from <leader>l to <leader>x
+  # TODO: this is using <leader> instead of the recommanded <localleader>
+  xdg.configFile."nvim/ftplugin/tex.vim".text = ''
+    " Mappings from the vimtex plugin
+    " start all mappings with 'x' instead of 'l'
+    nmap <leader>xi  <plug>(vimtex-info)
+    nmap <leader>xI  <plug>(vimtex-info-full)
+    nmap <leader>xt  <plug>(vimtex-toc-open)
+    nmap <leader>xT  <plug>(vimtex-toc-toggle)
+    nmap <leader>xq  <plug>(vimtex-log)
+    nmap <leader>xv  <plug>(vimtex-view)
+    nmap <leader>xr  <plug>(vimtex-reverse-search)
+    nmap <leader>xl  <plug>(vimtex-compile-ss)
+    nmap <leader>xL  <plug>(vimtex-compile)
+    nmap <leader>xk  <plug>(vimtex-stop)
+    nmap <leader>xK  <plug>(vimtex-stop-all)
+    nmap <leader>xe  <plug>(vimtex-errors)
+    nmap <leader>xo  <plug>(vimtex-compile-output)
+    nmap <leader>xg  <plug>(vimtex-status)
+    nmap <leader>xG  <plug>(vimtex-status-all)
+    nmap <leader>xc  <plug>(vimtex-clean)
+    nmap <leader>xC  <plug>(vimtex-clean-full)
+    nmap <leader>xm  <plug>(vimtex-imaps-list)
+    nmap <leader>xx  <plug>(vimtex-reload)
+    nmap <leader>xX  <plug>(vimtex-reload-state)
+    nmap <leader>xs  <plug>(vimtex-toggle-main)
   '';
 }
