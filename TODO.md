@@ -11,6 +11,10 @@
 ## Long-term
 
 - find a way to automatically commit the generated dotfiles for non-NixOS users
+  - idea: have nix generate placeholders for unavailable secrets and create a
+    github action that builds all home-manager config files (and maybe others?)
+    and commits them to another repository. It should be secure since github
+    action cannot decrypt `git-crypt` secrets
 
 ## Maybe
 
