@@ -37,6 +37,7 @@
       targets-vim
       suda-vim
       vim-eunuch
+      vim-togglelist
 
       # Language-agnostic editing improvements
       ctrlp-vim
