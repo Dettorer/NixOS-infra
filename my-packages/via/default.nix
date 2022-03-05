@@ -64,8 +64,8 @@ let
     comment = "Via Launcher";
     exec = "via %u";
     icon = "viaIcone.svg";
-    categories = "Application;Network;";
-    mimeType = "x-scheme-handler/viaapp";
+    categories = [ "Application" "Network" ];
+    mimeTypes = [ "x-scheme-handler/viaapp" ];
     terminal = false;
     type = "Application";
   };
@@ -75,8 +75,8 @@ let
     desktopName = "ViaScreenSharing Launcher";
     exec = "viascreensharing %u";
     icon = "viascreensharing.svg";
-    categories = "Application;Network;";
-    mimeType = "x-scheme-handler/viascreensharing";
+    categories = [ "Application" "Network" ];
+    mimeTypes = [ "x-scheme-handler/viascreensharing" ];
     terminal = false;
     type = "Application";
   };
