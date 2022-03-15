@@ -159,7 +159,7 @@
         plugin = ultisnips;
         config = ''
           let g:UltiSnipsExpandTrigger="<c-j>"
-          let g:UltiSnipsSnippetDirectories=["plugged/UltiSnips/UltiSnips", "${./ultisnips_snippets}"]
+          let g:UltiSnipsSnippetDirectories=["plugged/UltiSnips/UltiSnips", "${./nvim/ultisnips_snippets}"]
         '';
       }
     ];
@@ -472,4 +472,8 @@
     nmap <leader>xX  <plug>(vimtex-reload-state)
     nmap <leader>xs  <plug>(vimtex-toggle-main)
   '';
+
+  # enable EPITA's Tiger language syntax highlighting
+  xdg.configFile."nvim/ftdetect/tiger.vim".source = ./nvim/tiger-ftdetect.vim;
+  xdg.configFile."nvim/syntax/tiger.vim".source = ./nvim/tiger-syntax.vim;
 }
