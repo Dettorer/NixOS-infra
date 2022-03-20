@@ -422,8 +422,6 @@
         "diagnostic.virtualText": true,
         "diagnostic.virtualTextPrefix": "  ~> ",
 
-        "rust.clippy_preference": "opt-in",
-
         "suggest.enablePreview": true,
         "suggest.enablePreselect": true,
 
