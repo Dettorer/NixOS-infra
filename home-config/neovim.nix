@@ -6,7 +6,6 @@
     withNodeJs = true;
     withPython3 = true;
     extraPackages = with pkgs; [
-      rnix-lsp
       opam
       git
     ];
@@ -437,7 +436,7 @@
 
         "languageserver": {
           "nix": {
-              "command": "rnix-lsp",
+              "command": "${pkgs.rnix-lsp}/bin/rnix-lsp",
               "filetypes": ["nix"]
           }
         }
