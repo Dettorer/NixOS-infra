@@ -8,6 +8,10 @@
     extraPackages = with pkgs; [
       opam
       git
+
+      # for coc-rls
+      rustc
+      rls
     ];
 
     extraPython3Packages = (ps: with ps; [
@@ -149,7 +153,7 @@
       coc-json
       coc-markdownlint
       coc-python
-      coc-rls
+      coc-rls # TODO: switch to rust-analyzer (but it cannot seem to find the standard library from rust-src)
       coc-texlab
       coc-tsserver
       coc-vimlsp
@@ -431,6 +435,8 @@
         "highlight.colorNames.enable": false,
 
         "texlab.path": "${pkgs.texlab}/bin/texlab",
+
+        "rust-client.disableRustup": true,
 
         "languageserver": {
           "nix": {
