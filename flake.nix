@@ -17,6 +17,6 @@
         ];
       };
     };
-    overlay = import ./my-packages;
+    overlays.default = import ./my-packages;
   };
 }
