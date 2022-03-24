@@ -31,8 +31,8 @@
         config = "let g:airline_powerline_fonts = 1";
       }
       {
-        plugin = indentLine;
-        config = "let g:indentLine_fileTypeExclude = ['markdown']";
+        plugin = indent-blankline-nvim;
+        config = "let g:indent_blankline_show_trailing_blankline_indent = v:false";
       }
 
       # Vim behaviors improvements
