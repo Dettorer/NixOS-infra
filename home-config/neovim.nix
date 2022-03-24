@@ -94,9 +94,6 @@
           \ 'font',
           \ 'Underfull'
           \ ]
-
-          " Do not conceal stuff
-          let g:vimtex_syntax_conceal_disable = 1
           '';
       }
       {
@@ -245,6 +242,9 @@
       " Shorter time trigger for CursorHold (which makes coc-highlight show other uses
       " of the symbol currently under the cursor)
       set updatetime=1000
+
+      " Disable concealing by default
+      set conceallevel=0
       " }}}
 
       " bépo remaping {{{
