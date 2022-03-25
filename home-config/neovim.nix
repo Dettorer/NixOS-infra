@@ -32,7 +32,10 @@
       }
       {
         plugin = indent-blankline-nvim;
-        config = "let g:indent_blankline_show_trailing_blankline_indent = v:false";
+        config = ''
+          let g:indent_blankline_show_trailing_blankline_indent = v:false
+          let g:indent_blankline_char_blankline = '┆'
+        '';
       }
 
       # Vim behaviors improvements
