@@ -33,6 +33,54 @@ in
     ]);
 
     plugins = with pkgs.vimPlugins; [
+      # Engines
+      {
+        plugin = coc-nvim;
+        config = ''
+          ${mapleadersDefinitions}
+
+          " Select autocompletion item with Tab and S-Tab, confirm with CR
+          inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+          inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+          inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+          " Code navigation
+          nmap <leader>ld <Plug>(coc-definition)
+          nmap <leader>lt <Plug>(coc-type-definition)
+          nmap <leader>li <Plug>(coc-implementation)
+          nmap <leader>lr <Plug>(coc-references-used)
+
+          " Code actions
+          vmap <leader>laf <Plug>(coc-format-selected)
+          nmap <leader>laf <Plug>(coc-format)
+          nmap <leader>lar <Plug>(coc-rename)
+          nmap <leader>laq <Plug>(coc-fix-current)
+
+          " Highlight other uses of the symbol currently under the cursor (needs
+          " coc-highlight)
+          autocmd CursorHold * silent call CocActionAsync('highlight')
+          highlight CocHighlightText guibg=#4b5263
+
+          " let g:opamshare = substitute(system('opam config var share'),'\n$',''\'''\',''\'''\'''\'''\')
+          " execute "set rtp+=" . g:opamshare . "/merlin/vim"
+        '';
+      }
+      {
+        plugin = nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
+        config = ''
+          lua << EOF
+          require'nvim-treesitter.install'.compilers = {"${pkgs.clang}/bin/clang++"}
+          require'nvim-treesitter.configs'.setup {
+            ensure_installed = "maintained",
+            sync_install = false,
+            highlight = {
+              enable = true,
+            },
+          }
+          EOF
+        '';
+      }
+
       # Themes and visuals
       vim-one
       vim-airline-themes
@@ -46,6 +94,7 @@ in
         config = ''
           let g:indent_blankline_show_trailing_blankline_indent = v:false
           let g:indent_blankline_char_blankline = '┆'
+          let g:indent_blankline_show_current_context = v:true
         '';
       }
 
@@ -70,6 +119,9 @@ in
       }
 
       # Language-specific improvements
+      # TODO: some of these plugin could be removed if they only provide syntax
+      # highlighting (treesitter does its own highlighting for the languages it
+      # supports)
       # python-syntax
       # black
       vim-toml
@@ -120,44 +172,6 @@ in
             augroup END
         '';
       }
-
-      # Dev tools
-      vim-test
-      {
-        plugin = nerdcommenter;
-        config = "let g:NERDSpaceDelims=1";
-      }
-      {
-        plugin = coc-nvim;
-        config = ''
-          ${mapleadersDefinitions}
-
-          " Select autocompletion item with Tab and S-Tab, confirm with CR
-          inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-          inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-          inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-          " Code navigation
-          nmap <leader>ld <Plug>(coc-definition)
-          nmap <leader>lt <Plug>(coc-type-definition)
-          nmap <leader>li <Plug>(coc-implementation)
-          nmap <leader>lr <Plug>(coc-references-used)
-
-          " Code actions
-          vmap <leader>laf <Plug>(coc-format-selected)
-          nmap <leader>laf <Plug>(coc-format)
-          nmap <leader>lar <Plug>(coc-rename)
-          nmap <leader>laq <Plug>(coc-fix-current)
-
-          " Highlight other uses of the symbol currently under the cursor (needs
-          " coc-highlight)
-          autocmd CursorHold * silent call CocActionAsync('highlight')
-          highlight CocHighlightText guibg=#4b5263
-
-          " let g:opamshare = substitute(system('opam config var share'),'\n$',''\'''\',''\'''\'''\'''\')
-          " execute "set rtp+=" . g:opamshare . "/merlin/vim"
-        '';
-      }
       coc-clangd
       coc-cmake
       coc-git
@@ -171,6 +185,13 @@ in
       coc-tsserver
       coc-vimlsp
       coc-yaml
+
+      # Dev tools
+      vim-test
+      {
+        plugin = nerdcommenter;
+        config = "let g:NERDSpaceDelims=1";
+      }
       {
         plugin = ultisnips;
         config = ''
