@@ -1,4 +1,16 @@
 { pkgs, ... }:
+
+let
+  mapleadersDefinitions = ''
+    " These definitions are repeated in every block that uses <leader> or
+    " <localleader> bindings. This is because home-manager's extraConfig text
+    " appears too late in the generated config file, so if I define map leaders
+    " only in extraConfig, it will appear after the plugin configurations, who
+    " sometimes need the definition.
+    let mapleader = ","
+    let maplocalleader = "\\"
+  '';
+in
 {
   programs.neovim = {
     enable = true;
@@ -118,6 +130,8 @@
       {
         plugin = coc-nvim;
         config = ''
+          ${mapleadersDefinitions}
+
           " Select autocompletion item with Tab and S-Tab, confirm with CR
           inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
           inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -174,8 +188,7 @@
       set nocompatible
 
       " Set the prefix for many plugin commands
-      let mapleader=","
-      let maplocalleader="\\"
+      ${mapleadersDefinitions}
 
       " Toggle g option by default on substition
       set gdefault
@@ -454,6 +467,8 @@
   # from <leader>l to <leader>x
   # TODO: this is using <leader> instead of the recommanded <localleader>
   xdg.configFile."nvim/ftplugin/tex.vim".text = ''
+    ${mapleadersDefinitions}
+
     " Mappings from the vimtex plugin
     " start all mappings with 'x' instead of 'l'
     nmap <leader>xi  <plug>(vimtex-info)
