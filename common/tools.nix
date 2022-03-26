@@ -16,6 +16,7 @@ rec {
 
   environment.systemPackages = with pkgs; [
     alacritty.terminfo
+    bat
     emacs
     file
     killall
