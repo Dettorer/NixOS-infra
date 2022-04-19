@@ -71,7 +71,7 @@ in
           lua << EOF
           require'nvim-treesitter.install'.compilers = {"${pkgs.clang}/bin/clang++"}
           require'nvim-treesitter.configs'.setup {
-            ensure_installed = "maintained",
+            ensure_installed = "all",
             sync_install = false,
             highlight = {
               enable = true,
