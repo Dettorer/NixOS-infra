@@ -75,6 +75,8 @@ in
             sync_install = false,
             highlight = {
               enable = true,
+              -- I prefer the default nvim highlighter for certain languages
+              disable = { "markdown" },
             },
           }
           EOF
