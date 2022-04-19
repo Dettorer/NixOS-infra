@@ -71,8 +71,7 @@ in
           lua << EOF
           require'nvim-treesitter.install'.compilers = {"${pkgs.clang}/bin/clang"}
           require'nvim-treesitter.configs'.setup {
-            ensure_installed = "all",
-            sync_install = false,
+            -- XXX: not sure if I need ensure_installed here or not
             highlight = {
               enable = true,
               -- I prefer the default nvim highlighter for certain languages
