@@ -154,7 +154,9 @@ in {
 
     environment.systemPackages = with pkgs; [
       arandr
-      barrier
+      # TODO: enable barrier again once
+      # https://github.com/NixOS/nixpkgs/issues/170103 is fixed
+      # barrier
       chromium
       discord
       evince
