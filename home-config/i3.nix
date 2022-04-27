@@ -45,13 +45,15 @@ in {
         # kill focused window
         "${mod}+Shift+B" = "kill";
 
-        # rofi app and window launchers
+        # rofi bindings
         ## Launch // Application // <Super> Space ##
         "${mod}+i" = "exec ${pkgs.rofi}/bin/rofi -show drun";
         ## Launch // Command // <Super><Shift> i ##
         "${mod}+Ctrl+i" = "exec ${pkgs.rofi}/bin/rofi -show run";
         ## Navigate // Window by Name // <Super><Ctrl> i ##
         "${mod}+Shift+i" = "exec ${pkgs.rofi}/bin/rofi -show window";
+        ## Emojis
+        "${mod}+percent" = "exec ${pkgs.rofimoji}/bin/rofimoji";
 
         # change focus, vim like
         "${mod}+c" = "focus left";
