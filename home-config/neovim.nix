@@ -415,9 +415,9 @@ in
 
       " Custom bindings {{{
       " English spelling
-      noremap <F9> :setlocal spell spelllang=en_us<CR>
+      noremap <F9> :setlocal spell spelllang=en<CR>
       " French spelling
-      noremap <F10> :setlocal spell spelllang=fr_fr<CR>
+      noremap <F10> :setlocal spell spelllang=fr<CR>
 
       " Binding to paste mode (might not be needed with the bracketed-paste plugin)
       noremap <F11> :set paste!<CR>
