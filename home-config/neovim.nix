@@ -75,7 +75,9 @@ in
             highlight = {
               enable = true,
               -- I prefer the default nvim highlighter for certain languages
-              disable = { "markdown" },
+              -- vimtex also relies on its own syntax highlighting being used
+              -- for some of its features
+              disable = { "markdown", "latex" },
             },
           }
           EOF
