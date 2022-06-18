@@ -475,6 +475,7 @@ in
 
         "texlab.path": "${pkgs.texlab}/bin/texlab",
 
+        "rust-analyzer.inlayHints.closureReturnTypeHints.enable": true,
         "rust-analyzer.server.path": "${pkgs.rust-analyzer}/bin/rust-analyzer",
         "rust-analyzer.updates.checkOnStartup": false,
 
