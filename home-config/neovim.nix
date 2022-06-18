@@ -377,6 +377,10 @@ in
       colorscheme one
       let g:airline_theme='one'
 
+      " Dim the default color for automatic inlay hints such as rust-analyzer's
+      " type and chain hints
+      hi CocHintSign ctermfg=12 guifg=#0b5963
+
       function! SwitchColorscheme()
         " Switch between a light and a dark colorscheme
         if &background ==# 'dark'
