@@ -91,7 +91,6 @@ in {
       fadeDelta = 4;
       fadeSteps = [ 0.33 0.03 ];
 
-      refreshRate = 0;
       vSync = true;
 
       wintypes = {
