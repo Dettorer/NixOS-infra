@@ -20,3 +20,4 @@
 
 - manage secrets so that they aren't readable by everyone in store (maybe try
   sops-nix?)
+- move some common stuff to a "core" role
