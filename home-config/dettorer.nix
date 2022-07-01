@@ -2,6 +2,8 @@ let
   my = import ../.;
 in
 {
+  home.stateVersion = "21.05";
+
   imports = [
     ./alacritty.nix # TODO: not on server
     ./emacs.nix
