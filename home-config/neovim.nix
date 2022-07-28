@@ -18,11 +18,10 @@ in
     withNodeJs = true;
     withPython3 = true;
     extraPackages = with pkgs; [
-      opam
       git
-
-      # for coc-rust-analyzer
-      rustc
+      jdk # for coc-java
+      opam
+      rustc # for coc-rust-analyzer
     ];
 
     extraPython3Packages = (ps: with ps; [
@@ -175,11 +174,13 @@ in
             augroup END
         '';
       }
+
       coc-clangd
       coc-cmake
       coc-git
       coc-go
       coc-highlight
+      coc-java
       coc-json
       coc-markdownlint
       coc-python
