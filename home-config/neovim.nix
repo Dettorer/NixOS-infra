@@ -42,6 +42,19 @@ in
           inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
           inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
           inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+          " TODO: when the coc update reaches nixos, remove the three previous
+          " lines and uncomment the following block
+          " inoremap <silent><expr> <TAB>
+          "     \ coc#pum#visible() ? coc#pum#next(1):
+          "     \ CheckBackspace() ? "\<Tab>" :
+          "     \ coc#refresh()
+          " inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+          " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+          "     \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+          " function! CheckBackspace() abort
+          "   let col = col('.') - 1
+          "   return !col || getline('.')[col - 1]  =~# '\s'
+          " endfunction
 
           " Code navigation
           nmap <leader>ld <Plug>(coc-definition)
@@ -54,6 +67,17 @@ in
           nmap <leader>laf <Plug>(coc-format)
           nmap <leader>lar <Plug>(coc-rename)
           nmap <leader>laq <Plug>(coc-fix-current)
+
+          " Use K to show documentation in preview window.
+          nnoremap <silent> K :call ShowDocumentation()<CR>
+
+          function! ShowDocumentation()
+            if CocAction('hasProvider', 'hover')
+              call CocActionAsync('doHover')
+            else
+              call feedkeys('K', 'in')
+            endif
+          endfunction
 
           " Highlight other uses of the symbol currently under the cursor (needs
           " coc-highlight)
