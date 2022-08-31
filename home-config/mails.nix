@@ -33,7 +33,8 @@ rec {
     '';
     ".signature.epita".text = ''
       Paul Hervot
-      Enseignant Archi/C-UNIX/ASM
+      Enseignant archi/HI/IP/ASM/CMP/TYLA
+      Responsable MyPC (HI)
       EPITA Strasbourg
     '';
     ".signature.unistra".text = ''
