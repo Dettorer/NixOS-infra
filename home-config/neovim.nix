@@ -39,22 +39,17 @@ in
           ${mapleadersDefinitions}
 
           " Select autocompletion item with Tab and S-Tab, confirm with CR
-          inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-          inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-          inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-          " TODO: when the coc update reaches nixos, remove the three previous
-          " lines and uncomment the following block
-          " inoremap <silent><expr> <TAB>
-          "     \ coc#pum#visible() ? coc#pum#next(1):
-          "     \ CheckBackspace() ? "\<Tab>" :
-          "     \ coc#refresh()
-          " inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-          " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-          "     \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-          " function! CheckBackspace() abort
-          "   let col = col('.') - 1
-          "   return !col || getline('.')[col - 1]  =~# '\s'
-          " endfunction
+          inoremap <silent><expr> <TAB>
+              \ coc#pum#visible() ? coc#pum#next(1):
+              \ CheckBackspace() ? "\<Tab>" :
+              \ coc#refresh()
+          inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+          inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+          function! CheckBackspace() abort
+            let col = col('.') - 1
+            return !col || getline('.')[col - 1]  =~# '\s'
+          endfunction
 
           " Code navigation
           nmap <leader>ld <Plug>(coc-definition)
