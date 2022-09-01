@@ -10,18 +10,18 @@
 
 
 * {
-  black:      #000000;
-  red:        #eb6e67;
-  green:      #95ee8f;
-  yellow:     #f8c456;
-  blue:       #6eaafb;
-  mangenta:   #d886f3;
-  cyan:       #6cdcf7;
+  black:      #000000; // pure dark
+  red:        #e06c75;
+  green:      #98c379;
+  yellow:     #e5c07b;
+  blue:       #61afef;
+  magenta:    #c678dd;
+  cyan:       #56b6c2;
   emphasis:   #50536b;
   text:       #dfdfdf;
   text-alt:   #b2b2b2;
   fg:         #abb2bf;
-  bg:         #282c34;
+  bg:         #282c34; // OneDark dark
 
   spacing: 0;
   background-color: transparent;
@@ -33,7 +33,7 @@
 window {
   transparency: "real";
   fullscreen: true;
-  background-color: #282c34dd;
+  background-color: @bg;
 }
 
 mainbox {
@@ -68,7 +68,7 @@ listview {
 element {
   padding: 5px;
   text-color: @text-alt;
-  highlight: bold #95ee8f; /* green */
+  highlight: bold #98c379; /* green */
   border-radius: 3px;
 }
 
@@ -82,7 +82,7 @@ element urgent, element selected urgent {
 }
 
 element active, element selected active {
-  text-color: @purple;
+  text-color: @magenta;
 }
 
 message {
