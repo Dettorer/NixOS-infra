@@ -20,6 +20,7 @@ rec {
     cachix
     emacs
     file
+    imagemagick
     killall
     most
     pdftk
