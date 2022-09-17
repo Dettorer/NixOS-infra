@@ -202,7 +202,7 @@ in
       coc-java
       coc-json
       coc-markdownlint
-      coc-python
+      coc-pyright
       coc-rust-analyzer
       coc-texlab
       coc-tsserver
@@ -482,7 +482,6 @@ in
   xdg.configFile."nvim/coc-settings.json".text = ''
       {
         "python.formatting.provider": "black",
-        "python.jediEnabled": true,
         "python.linting.flake8Enabled": true,
         "python.pythonPath": "nvim-python3",
 
