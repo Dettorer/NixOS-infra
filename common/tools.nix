@@ -23,6 +23,7 @@ rec {
     imagemagick
     killall
     most
+    ntfs3g
     pdftk
     tree
     unzip
