@@ -28,6 +28,7 @@ rec {
     tree
     unzip
     wget
+    zip
     zsh
 
     # monitoring
