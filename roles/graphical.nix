@@ -158,6 +158,7 @@ in {
       # barrier
       chromium
       discord
+      escrotum
       evince
       firefox
       gnome.adwaita-icon-theme

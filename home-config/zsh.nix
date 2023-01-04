@@ -99,23 +99,24 @@
           function upload # This should be cleaned, but later... TODO
           {
             # Main variables
-            SSH_USER="dettorer"
-            SSH_HOST="dettorer.net"
-            SSH="$SSH_USER@$SSH_HOST"
-            HTTP_SERVER_PATH="/srv/http/dettorer.net"
+            REMOTE="dettorer@doublonville.dettorer.net"
+            UPLOAD_PATH="/srv/http/dettorer.net"
             BASE_URL="https://dettorer.net"
 
             # Parse arguments
-            if [ $# -lt 2 ]; then
-                echo "At least two arguments are needed"
+            if [[ $# -lt 1 ]]; then
+                echo "No file given to upload"
                 return -1
+            elif [[ "$1" == "-p" ]]; then
+                # add some parts to the upload path
+                EXTRA_PATH="/$2"
+                UPLOAD_PATH="$UPLOAD_PATH/$2"
+                shift 2
             fi
-            FILES=$*[0,-2]
-            ADD_PATH=$*[-1]
 
             # Upload files
-            echo "Uploading $FILES..."
-            rscp $FILES $SSH:$HTTP_SERVER_PATH/$ADD_PATH
+            echo "Uploading" "$@"
+            rsync --partial --progress --archive "$@" "$REMOTE:$UPLOAD_PATH"
             err=$?
             if [ $err -ne 0 ]; then
                 echo "Error while uploading, aborting!"
@@ -125,14 +126,63 @@
 
             # Correct file permission on the server
             echo "Fixing permissions..."
-            for file in $FILES; do
-                ssh -q -t $SSH chmod -R +r "$HTTP_SERVER_PATH/$ADD_PATH/`basename $file`"
+            for file in "$@"; do
+                ssh -q -t "$SSH" chmod -R +r "$UPLOAD_PATH/$(basename $file)"
             done
 
             # Prompt links to uploaded files
-            for file in $FILES; do
-                echo $BASE_URL/$ADD_PATH/`basename $file`
-            done
+            URLS=$(
+                for file in "$@"; do
+                    echo "$BASE_URL$EXTRA_PATH/$(basename $file)"
+                done
+            )
+            echo $URLS
+            echo $URLS | xclip -selection clipboard
+          }
+
+          function screenshot
+          {
+              # Help
+              if [[ "$1" == "-h" ]]; then
+                  cat <<-EOF
+          Usage: $0 [-u] [ESCROTUM OPTIONS...]
+
+              -u: instead of copying the image itself to the clipboard, upload
+                  it and copy the url instead.
+          EOF
+                  return 0
+              fi
+
+              # Prepare the shot's file path
+              date="$( date +%Y-%m-%d-%H%M%S )"
+              rand="$( head -n256 /dev/urandom | base64 | tr -d '/+' | head -c10 )"
+              SHOTNAME="screen-''${date}-''${rand}.png"
+              SHOTSDIR="$HOME/images/screenshots"
+              [ -d "$SHOTSDIR" ] || mkdir -p "$SHOTSDIR"
+              SHOTPATH="$SHOTSDIR/$SHOTNAME"
+
+              echo "Using escrotum and saving to $SHOTPATH"
+              if [[ "$1" == "-u" ]]; then
+                  shift
+                  # Save and upload the image, then copy its url to the clipboard
+                  escrotum "$@" "$SHOTPATH"
+                  upload -p screenshots "$SHOTPATH"
+              else
+                  # Just save the image and copy it in the clipboard
+                  escrotum -C "$@" "$SHOTPATH"
+                  echo "The image was saved to the clipboard"
+              fi
+          }
+
+          function meow
+          {
+              cat <<-"EOF"
+            |\      _,,,--,,_  ,)
+            /,`.-'`'   -,  ;-;;'       purr
+           |,4-  ) )-,_ ) /\                  purr
+          '---'''(_/--' (_/-'
+          EOF
+              screenshot "$@"
           }
 
           function quicksave
