@@ -4,7 +4,6 @@ rec {
   home.packages = with pkgs; [ thunderbird protonmail-bridge ];
 
   # Thunderbird
-  # TODO: password popups seem to missing a font or a gtk theme
   home.file = {
     ".thunderbird/profiles.ini".text = ''
       [Profile0]
