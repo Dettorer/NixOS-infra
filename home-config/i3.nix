@@ -143,8 +143,14 @@ in {
         # exit i3 (logs you out of your X session)
         "${mod}+Shift+P" = "exit";
 
+        # keymap transitions
         "${mod}+F1" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch";
         "${mod}+F2" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch fr bepo";
+
+        # Screenshots and copy either the image (without shift) into the clipboard or
+        # its upload URL (with shift)
+        "${mod}+F3" = "exec zsh -i -c 'meow -s > ~/meow.logs 2>&1'";
+        "${mod}+Shift+F3" = "exec zsh -i -c 'meow -u -s > ~/meow.logs 2>&1'";
 
         # screen lock
         "${mod}+l" = "exec ${pkgs.i3lock}/bin/i3lock -i ~/images/wallpapers/lock_wallpaper.png"; # TODO: handle the image path
