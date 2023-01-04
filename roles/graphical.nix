@@ -153,9 +153,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       arandr
-      # TODO: enable barrier again once
-      # https://github.com/NixOS/nixpkgs/issues/170103 is fixed
-      # barrier
+      barrier
       chromium
       discord
       escrotum
