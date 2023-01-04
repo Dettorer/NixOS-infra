@@ -187,27 +187,27 @@
 
           function quicksave
           {
-            rscp $* dettorer@dettorer.net:~/quicksave
+            rsync --partial --progress --archive $* dettorer@dettorer.net:~/quicksave
           }
           function quickfetch
           {
             [ $# -gt 0 ] && dest=$1 || dest=.
-            rscp --remove-source-files dettorer@dettorer.net:~/quickfetch/ "$dest"
+            rsync --partial --progress --archive --remove-source-files dettorer@dettorer.net:~/quickfetch/ "$dest"
           }
           function quickfetchi
           {
             [ $# -gt 0 ] && dest=$1 || dest=.
-            rscp --remove-source-files --inplace dettorer@dettorer.net:~/quickfetch/ "$dest"
+            rsync --partial --progress --archive --remove-source-files --inplace dettorer@dettorer.net:~/quickfetch/ "$dest"
           }
           function quickfetchpeek
           {
             [ $# -gt 0 ] && dest=$1 || dest=.
-            rscp dettorer@dettorer.net:~/quickfetch/ "$dest"
+            rsync --partial --progress --archive dettorer@dettorer.net:~/quickfetch/ "$dest"
           }
           function quickfetchpeeki
           {
             [ $# -gt 0 ] && dest=$1 || dest=.
-            rscp --inplace dettorer@dettorer.net:~/quickfetch/ "$dest"
+            rsync --partial --progress --archive --inplace dettorer@dettorer.net:~/quickfetch/ "$dest"
           }
         '';
         keybinds = ''
