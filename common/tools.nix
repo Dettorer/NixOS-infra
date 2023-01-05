@@ -73,8 +73,4 @@ rec {
   users.defaultUserShell = pkgs.zsh;
 
   services.locate.enable = true;
-
-  # Needed for an obscure reason for via (video-conferencing application for
-  # SYNVA)
-  services.upower.enable = true;
 }

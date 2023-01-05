@@ -12,7 +12,6 @@ in
     ./mails.nix
     ./neovim.nix
     ./ssh.nix
-    ./synva.nix
     ./tmux.nix
     ./xsession.nix # TODO: not on server
     ./zsh.nix

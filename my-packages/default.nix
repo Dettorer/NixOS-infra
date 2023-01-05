@@ -76,6 +76,5 @@ final: prev: {
       # setxkbmap broke the caps lock / escape swap
       setxkbmap -option caps:swapescape
     '';
-    via = prev.callPackage ./via {}; # TODO: get rid of that horrible thing ASAP
   };
 }
