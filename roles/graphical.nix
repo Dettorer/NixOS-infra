@@ -19,6 +19,11 @@ in {
 
       windowManager.i3.enable = true;
 
+      # Needed so that gnome-keyring can find a display on which to prompt for a
+      # password when unlocking the key store (which in turn is needed for
+      # protonmail-bridge)
+      updateDbusEnvironment = true;
+
       displayManager = {
         sddm.enable = true;
         sddm.autoNumlock = true;
@@ -132,8 +137,6 @@ in {
       };
     };
 
-    services.gnome.gnome-keyring.enable = true; # Needed for example for protonmail-bridge
-
     programs.nm-applet.enable = true;
 
     programs.dconf.enable = true;
@@ -178,5 +181,9 @@ in {
       xclip
       xournalpp
     ];
+
+    # For the password management of protonmail-bridge
+    programs.seahorse.enable = true;
+    services.gnome.gnome-keyring.enable = true;
   };
 }

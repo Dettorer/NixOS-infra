@@ -50,16 +50,21 @@ rec {
     '';
   };
 
-  # Protonmail
+  # Protonmail Bridge
+  # The service is tied to the graphical user session because it will try to
+  # unlock the gnome-keyring default key store when starting, which needs a
+  # graphical environment to prompt for the keystore's password
   systemd.user.services."protonmail-bridge" = {
-    Unit.Description = "Protonmail Bridge - ProtonMail IMAP and SMTP Bridge";
+    Unit = {
+      Description = "Protonmail Bridge - ProtonMail IMAP and SMTP Bridge";
+      PartOf = "graphical-session.target";
+    };
     Service = {
       Type = "simple";
       ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive";
-      Environment = "PATH=${pkgs.gnome.gnome-keyring}/bin";
       Restart = "always";
       KillMode = "process";
     };
-    Install.WantedBy = [ "default.target" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }
