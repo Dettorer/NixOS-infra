@@ -1,16 +1,6 @@
 # This is a nixpkgs overlay adds my own custom packages to pkgs (possibly
 # overriding some of them)
 final: prev: {
-  # Until upstream mosh decides to release a new version, use a more recent
-  # commit that has truecolor support (pkgs.mosh-truecolor is a custom package
-  # added via an overlay)
-  mosh = (
-    if prev.mosh.version <= "1.3.2" then
-    prev.callPackage ./mosh-truecolor {}
-    else
-    prev.mosh
-    );
-
   # pentablet-driver = prev.qt5.callPackage ./pentablet-driver {}; # TODO: WIP
 
   _my = {
