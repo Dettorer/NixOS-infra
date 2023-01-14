@@ -20,9 +20,7 @@ in
 
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override {
-      i3GapsSupport = true;
-    };
+    package = pkgs.polybarFull;
 
     script = ''
       polybar rivamar-top &
