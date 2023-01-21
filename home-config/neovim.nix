@@ -84,7 +84,7 @@ in
         '';
       }
       {
-        plugin = nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
+        plugin = nvim-treesitter.withAllGrammars;
         config = ''
           lua << EOF
           require'nvim-treesitter.install'.compilers = {"${pkgs.clang}/bin/clang"}
