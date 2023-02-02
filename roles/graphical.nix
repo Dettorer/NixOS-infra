@@ -172,7 +172,6 @@ in {
       nitrogen
       obs-studio
       pavucontrol
-      pentablet-driver
       redshift
       teams
       thunderbird

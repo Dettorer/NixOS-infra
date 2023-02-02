@@ -10,7 +10,6 @@ rec {
     "discord"
     "steam" "steam-original" "steam-runtime"
     "cnijfilter"
-    "pentablet-driver"
     "corefonts"
   ];
 

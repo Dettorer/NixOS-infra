@@ -1,8 +1,6 @@
 # This is a nixpkgs overlay adds my own custom packages to pkgs (possibly
 # overriding some of them)
 final: prev: {
-  # pentablet-driver = prev.qt5.callPackage ./pentablet-driver {}; # TODO: WIP
-
   _my = {
     # Geany with an m68k compiler/emulator/debugger plugin
     geany-plugin-m68k = prev.qt5.callPackage ./geany-plugin-m68k {};
