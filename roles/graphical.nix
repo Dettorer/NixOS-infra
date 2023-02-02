@@ -156,6 +156,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       arandr
+      anki-bin
       barrier
       chromium
       discord
