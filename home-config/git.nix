@@ -39,10 +39,10 @@
     extraConfig = {
       color.ui = true;
 
-      core.editor = "${pkgs.neovim}/bin/nvim";
+      core.editor = "nvim";
 
-      merge.tool = "vimdiff";
-      mergetool.vimdiff.cmd = "${pkgs.neovim}/bin/nvim -d $LOCAL $REMOTE $MERGED";
+      merge.tool = "nvim";
+      mergetool.nvim.cmd = "nvim -d $LOCAL $REMOTE $MERGED";
 
       pager.status = false;
       pager.commit = false;
