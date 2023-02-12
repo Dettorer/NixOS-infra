@@ -4,7 +4,7 @@ rec {
   # Server
   services.openssh = {
     enable = true;
-    forwardX11 = true;
+    settings.X11Forwarding = true;
   };
 
   # Client
