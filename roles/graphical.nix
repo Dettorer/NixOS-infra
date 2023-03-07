@@ -166,7 +166,7 @@ in {
       gnome.adwaita-icon-theme
       gnome.eog
       hunspellDicts.fr-moderne
-      keepassx2
+      keepassxc
       libreoffice
       mpv
       nitrogen
