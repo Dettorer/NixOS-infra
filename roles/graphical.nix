@@ -155,8 +155,8 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      arandr
       anki-bin
+      arandr
       barrier
       chromium
       discord
@@ -172,6 +172,7 @@ in {
       nitrogen
       obs-studio
       pavucontrol
+      pdfpc
       redshift
       teams
       thunderbird
