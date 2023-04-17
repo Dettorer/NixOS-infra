@@ -26,6 +26,10 @@ in
     
   hardware.pulseaudio.enable = true;
 
+  # Bluetooth support
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   services.logind.lidSwitch = "ignore";
 
   my.roles = {
