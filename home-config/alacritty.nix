@@ -10,7 +10,7 @@ in
       colors = my.colorschemes.OneHalfDark;
       window.opacity = 0.97;
 
-      font.normal.family = "DejaVu Sans Mono Nerd Font";
+      font.normal.family = "DejaVuSansM Nerd Font";
       font.size = 6; # TODO: 6 on laptop, 9.5 on desktop
 
       hints = { # detect and allow opening urls
