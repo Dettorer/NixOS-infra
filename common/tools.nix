@@ -17,6 +17,7 @@ rec {
     most
     ntfs3g
     pdftk
+    ripgrep
     tree
     unzip
     wget
