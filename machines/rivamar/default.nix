@@ -44,8 +44,13 @@ in
 
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  # Use the GRUB bootloader and auto-detect windows
+  boot.loader.grub = {
+      enable = true;
+      device = "nodev";
+      useOSProber = true;
+      efiSupport = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   # This value determines the NixOS release from which the default
