@@ -4,14 +4,7 @@ let
   my = import ../.;
 in
 rec {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "nvidia-x11" "nvidia-settings"
-    "teams"
-    "discord"
-    "steam" "steam-original" "steam-runtime"
-    "cnijfilter"
-    "corefonts"
-  ];
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     alacritty.terminfo
