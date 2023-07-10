@@ -16,13 +16,6 @@ in
   ];
 
   hardware.acpilight.enable = true;
-
-  networking = {
-    hostName = "rivamar";
-    useDHCP = false;
-    interfaces.enp0s31f6.useDHCP = true;
-    interfaces.wlp3s0.useDHCP = true;
-  };
     
   hardware.pulseaudio.enable = true;
 

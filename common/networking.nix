@@ -1,7 +1,14 @@
 { machineName, ... }:
 
 {
-  networking.networkmanager.enable = true;
+  services.resolved.enable = true;
+
+  networking = {
+    hostName = machineName;
+    networkmanager.enable = true;
+    networkmanager.dns = "systemd-resolved";
+  };
+
   networking.extraHosts = ''
     # Extra names for localhost
     127.0.0.1	${machineName}.dettorer.net ${machineName}
