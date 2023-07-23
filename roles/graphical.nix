@@ -48,9 +48,9 @@ in {
     };
 
     fonts = {
-      enableDefaultFonts = true;
+      enableDefaultPackages = true;
       enableGhostscriptFonts = true;
-      fonts = with pkgs; [
+      packages = with pkgs; [
         corefonts
         (nerdfonts.override { fonts = [ "DejaVuSansMono" "Iosevka" "Meslo" ]; })
         unifont_upper

@@ -10,6 +10,7 @@ in {
   config = lib.mkIf cfg.enable {
     services.syncthing = {
       enable = true;
+
       user = "dettorer";
       group = "users";
       dataDir = "/home/dettorer/.syncthing";  # TODO: not sure if this setting is used
@@ -20,17 +21,19 @@ in {
       overrideDevices = true;
       overrideFolders = true;
 
-      extraOptions.gui.theme = "black";
-
       openDefaultPorts = true;  # TODO: maybe open other ports? the gui interface seems unreachable
 
-      devices = builtins.mapAttrs (name: info: {
-        inherit name;
-        id = info.id;
-        introducer = info.introducer;
-      }) secrets.syncthing.devices;
+      settings = {
+        gui.theme = "black";
 
-      folders = secrets.syncthing.folders;
+        devices = builtins.mapAttrs (name: info: {
+          inherit name;
+          id = info.id;
+          introducer = info.introducer;
+        }) secrets.syncthing.devices;
+
+        folders = secrets.syncthing.folders;
+      };
     };
   };
 }
