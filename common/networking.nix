@@ -9,6 +9,8 @@
     networkmanager.dns = "systemd-resolved";
   };
 
+  # TODO: factorize the IP adress as nix expressions to avoid repeating them as
+  # magic numbers
   networking.extraHosts = ''
     # Extra names for localhost
     127.0.0.1	${machineName}.dettorer.net ${machineName}

@@ -21,7 +21,8 @@ in {
       overrideDevices = true;
       overrideFolders = true;
 
-      openDefaultPorts = true;  # TODO: maybe open other ports? the gui interface seems unreachable
+      guiAddress = "10.8.0.30:8384";  # TODO: this is the hardcoded rivamar's Magnet VPN IP
+      openDefaultPorts = true;  # TODO: The gui interface is unreachable on the actual VPN, but reachable locally
 
       settings = {
         gui.theme = "black";
