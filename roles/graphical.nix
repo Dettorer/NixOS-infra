@@ -144,13 +144,20 @@ in {
     boot.extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
     boot.kernelModules = [ "v4l2loopback" ];
 
-    # TODO: virtualisation itself has nothing to do with the graphical role, only virt-manager
+    # TODO: virtualisation itself has nothing to do with the graphical role,
+    # only virt-manager and virtualbox's GUI
     virtualisation = {
+      # libvirt
       spiceUSBRedirection.enable = true;
       libvirtd = {
         enable = true;
         qemu.package = pkgs.qemu_kvm;
         onBoot = "ignore";
+      };
+      # virtualbox
+      virtualbox.host = {
+        enable = true;
+        enableExtensionPack = true;
       };
     };
 
