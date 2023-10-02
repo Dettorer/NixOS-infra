@@ -59,6 +59,11 @@
 
     plugins = [
       {
+        name = "grml";
+        file = "etc/zsh/zshrc";
+        src = pkgs.grml-zsh-config;
+      }
+      {
         name = "powerlevel10k";
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
         src = pkgs.zsh-powerlevel10k;
@@ -218,6 +223,7 @@
         ''; # TODO: not sure why this part is needed, I didn't have in archlinux, different defaults?
       in
       builtins.concatStringsSep "\n" [
+        "setopt noextendedglob"  # disable the special meaning of #, ^ and ~ (was enabled by grml)
         completion_styles
         functions
         keybinds
