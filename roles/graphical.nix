@@ -181,7 +181,6 @@ in {
       pavucontrol
       pdfpc
       redshift
-      teams
       thunderbird
       tridactyl-native # for extra features of the tridactyl firefox plugin
       virt-manager
