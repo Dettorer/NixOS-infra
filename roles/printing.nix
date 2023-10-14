@@ -10,7 +10,11 @@ in {
   config = lib.mkIf cfg.enable {
     services.printing = {
       enable = true;
-      drivers = [ pkgs.cnijfilter_4_00 ];
+      drivers = with pkgs; [
+        cnijfilter_4_00
+        epson-escpr
+        epson-escpr2
+      ];
     };
     hardware.sane = {
       enable = true;
