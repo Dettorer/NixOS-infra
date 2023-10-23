@@ -300,7 +300,7 @@ in
 
       " Shorter time trigger for CursorHold (which makes coc-highlight show other uses
       " of the symbol currently under the cursor)
-      set updatetime=1000
+      set updatetime=300
 
       " Disable concealing by default
       set conceallevel=0
