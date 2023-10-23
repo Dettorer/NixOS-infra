@@ -302,6 +302,10 @@ in
       " of the symbol currently under the cursor)
       set updatetime=300
 
+      " Always show the signcolumn to avoid shifting the display when a
+      " diagnostic appears or disappears
+      set signcolumn=yes
+
       " Disable concealing by default
       set conceallevel=0
       " }}}
