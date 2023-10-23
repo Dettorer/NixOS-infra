@@ -79,6 +79,9 @@ in
           autocmd CursorHold * silent call CocActionAsync('highlight')
           highlight CocHighlightText guibg=#4b5263
 
+          " Trigger a redraw every time the status line changes
+          autocmd User CocStatusChange redraws
+
           " let g:opamshare = substitute(system('opam config var share'),'\n$',''\'''\',''\'''\'''\'''\')
           " execute "set rtp+=" . g:opamshare . "/merlin/vim"
         '';
