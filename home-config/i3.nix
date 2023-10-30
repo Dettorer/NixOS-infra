@@ -2,7 +2,7 @@
 
 let
   mod = "Mod4";
-  defaultTerminal = "${pkgs.alacritty}/bin/alacritty"; # TODO: factorize the prefered terminal accross the whole config
+  defaultTerminal = "${pkgs.kitty}/bin/kitty"; # TODO: factorize the prefered terminal accross the whole config
 in {
   imports = [ ./polybar.nix ];
 
