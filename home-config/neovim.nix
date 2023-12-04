@@ -500,6 +500,7 @@ in
 
         "codeLens.enable": true,
         "codeLens.separator": "‣",
+        "codeLens.position": "eol",
 
         "highlight.colorNames.enable": false,
 
