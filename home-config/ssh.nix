@@ -22,16 +22,11 @@ rec {
         proxyJump = "ssh.cri.epita.fr";
       };
       "exam-git-pie.cri.epita.fr" = programs.ssh.matchBlocks."exam.pie.cri.epita.fr"; # TODO: deprecated?
-
-      # Unistra
-      "turing" = {
-        host = "turing turing.unistra.fr";
-        user = "phervot";
-      };
     };
 
+    addKeysToAgent = "yes";
+
     extraConfig = ''
-      AddKeysToAgent yes
       IdentityFile ~/.ssh/id_ed25519
       IdentityFile ~/.ssh/id_rsa
       IdentitiesOnly yes
