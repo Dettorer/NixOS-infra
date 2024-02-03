@@ -14,6 +14,7 @@ in
     ./neovim.nix
     ./ssh.nix
     ./tmux.nix
+    ./vscode.nix
     ./xsession.nix # TODO: not on server
     ./zsh.nix
   ];
