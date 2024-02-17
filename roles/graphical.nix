@@ -13,9 +13,11 @@ in {
 
       libinput.enable = true;
 
-      layout = "fr";
-      xkbVariant = "bepo";
-      xkbOptions = "caps:swapescape";
+      xkb = {
+          layout = "fr";
+          variant = "bepo";
+          options = "caps:swapescape";
+      };
 
       windowManager.i3.enable = true;
 
