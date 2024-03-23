@@ -512,7 +512,7 @@ in
 
         "languageserver": {
           "nix": {
-              "command": "${pkgs.rnix-lsp}/bin/rnix-lsp",
+              "command": "${pkgs.nixd}/bin/rnix-lsp",
               "filetypes": ["nix"]
           }
         }
