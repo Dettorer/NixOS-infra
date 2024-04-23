@@ -3,6 +3,8 @@
 {
   imports = [ ./i3.nix ];
 
+  home.packages = [ pkgs.rustdesk ];
+
   home.keyboard = {
     layout = "fr";
     variant = "bepo";
