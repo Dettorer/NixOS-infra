@@ -10,7 +10,7 @@ in
     '';
     gc.automatic = true;
     gc.options = lib.mkDefault "--delete-older-than 14d";
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.git;
     settings = {
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
