@@ -125,7 +125,7 @@ in
       # Vim behaviors improvements
       vim-obsession
       targets-vim
-      suda-vim
+      # suda-vim
       vim-eunuch
       vim-togglelist
 
