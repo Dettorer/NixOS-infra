@@ -8,14 +8,9 @@ rec {
       # EPITA
       "git.cri.epita.fr" = {
         user = "paul.hervot";
-        extraOptions."GSSAPIAuthentication" = "yes";
       };
       "ssh.cri.epita.fr" = {
         user = "paul.hervot";
-        extraOptions = {
-          "GSSAPIAuthentication" = "yes";
-          "GSSAPIDelegateCredentials" = "yes";
-        };
       };
       "exam.pie.cri.epita.fr" = {
         user = "paul.hervot";
