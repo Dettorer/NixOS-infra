@@ -177,6 +177,7 @@ in {
       escrotum
       evince
       firefox
+      flameshot
       gnome.adwaita-icon-theme
       gnome.eog
       hunspellDicts.fr-moderne
