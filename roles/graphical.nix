@@ -178,8 +178,8 @@ in {
       evince
       firefox
       flameshot
-      gnome.adwaita-icon-theme
-      gnome.eog
+      adwaita-icon-theme
+      eog
       hunspellDicts.fr-moderne
       keepassxc
       libreoffice
