@@ -18,6 +18,7 @@ in
   hardware.acpilight.enable = true;
     
   hardware.pulseaudio.enable = true;
+  services.pipewire.enable = false;
 
   # Bluetooth support
   hardware.bluetooth.enable = true;
