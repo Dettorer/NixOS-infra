@@ -60,6 +60,8 @@ in {
       packages = with pkgs; [
         corefonts
         (nerdfonts.override { fonts = [ "DejaVuSansMono" "Iosevka" "Meslo" ]; })
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
         unifont_upper
       ];
     };
