@@ -202,5 +202,16 @@ in {
     # For the password management of protonmail-bridge
     programs.seahorse.enable = true;
     services.gnome.gnome-keyring.enable = true;
+
+    # For japanese input
+    i18n.inputMethod = {
+        enable = true;
+        type = "ibus";
+        ibus.engines = [ pkgs.ibus-engines.mozc-ut ];
+    };
+    environment.variables = {
+        # env var used by kitty
+        GLFW_IM_MODULE = "ibus";
+    };
   };
 }
