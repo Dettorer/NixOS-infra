@@ -64,5 +64,11 @@ final: prev: {
       # setxkbmap broke the caps lock / escape swap
       setxkbmap -option caps:swapescape
     '';
+
+    # ibus with mozc-ut (to make it easier to install on non-nixos with nix
+    # profile install
+    ibus-mozc-ut = prev.ibus-with-plugins.override {
+      plugins = [ prev.ibus-engines.mozc-ut ];
+    };
   };
 }
