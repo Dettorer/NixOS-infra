@@ -66,7 +66,7 @@ final: prev: {
     '';
 
     # ibus with mozc-ut (to make it easier to install on non-nixos with nix
-    # profile install
+    # profile install)
     ibus-mozc-ut = prev.ibus-with-plugins.override {
       plugins = [ prev.ibus-engines.mozc-ut ];
     };
