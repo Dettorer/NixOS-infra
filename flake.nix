@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, lix-module, home-manager }: {
+  outputs = { self, nixpkgs, lix-module, home-manager }: rec {
     nixosConfigurations = {
       rivamar = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -22,6 +22,14 @@
         ];
       };
     };
+
     overlays.default = import ./my-packages;
+
+    packages."x86_64-linux" = let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ overlays.default ];
+      };
+    in pkgs._my;
   };
 }
