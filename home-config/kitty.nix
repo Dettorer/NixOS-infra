@@ -10,7 +10,7 @@ in
     # TODO: adapt the invert_colors script for kitty
     enable = true;
 
-    themeFile = "One Half Dark";
+    themeFile = "OneHalfDark";
 
     font.name = "DejaVu Sans Mono";
     font.size = 10; # TODO: 10 on desktop
