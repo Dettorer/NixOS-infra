@@ -15,6 +15,12 @@ in
     my.modules
   ];
 
+  # SSD-friendly filesystem options
+  fileSystems."/".options = [ "noatime" "discard" ];
+  fileSystems."/boot".options = [ "noatime" "discard" ];
+  boot.initrd.luks.devices."rivamar:data".allowDiscards = true;
+  services.fstrim.enable = true;
+
   hardware.acpilight.enable = true;
     
   hardware.pulseaudio.enable = true;
