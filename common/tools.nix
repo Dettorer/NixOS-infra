@@ -66,4 +66,7 @@ rec {
   users.defaultUserShell = pkgs.zsh;
 
   services.locate.enable = true;
+
+  # Disable nixos-option, incompatible with Lix apparently
+  system.tools.nixos-option.enable = false;
 }

@@ -508,16 +508,19 @@ in
 
         "rust-analyzer.inlayHints.closureReturnTypeHints.enable": true,
         "rust-analyzer.server.path": "${pkgs.rust-analyzer}/bin/rust-analyzer",
-        "rust-analyzer.updates.checkOnStartup": false,
-
-        "languageserver": {
-          "nix": {
-              "command": "${pkgs.nixd}/bin/nixd",
-              "filetypes": ["nix"]
-          }
-        }
-      }
+        "rust-analyzer.updates.checkOnStartup": false
   '';
+
+  # XXX: re-add nixd when it can build with lix
+  # ''
+  #       "languageserver": {
+  #         "nix": {
+  #             "command": "${pkgs.nixd}/bin/nixd",
+  #             "filetypes": ["nix"]
+  #         }
+  #       }
+  #     }
+  # '';
 
   # TODO: ideally find a way to dynamically change the vimtex command prefix
   # from <leader>l to <leader>x
