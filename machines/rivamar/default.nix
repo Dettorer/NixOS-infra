@@ -23,7 +23,10 @@ in
 
   hardware.acpilight.enable = true;
     
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+  };
   services.pipewire.enable = false;
 
   # Bluetooth support
