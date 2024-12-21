@@ -146,6 +146,8 @@ in {
         # keymap transitions
         "${mod}+F1" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch";
         "${mod}+F2" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch fr bepo";
+        "${mod}+d" = "exec ibus-daemon -dr";
+        "${mod}+Shift+d" = "exec pkill ibus-daemon";
 
         # Screenshots and copy either the image (without shift) into the clipboard or
         # its upload URL (with shift)
