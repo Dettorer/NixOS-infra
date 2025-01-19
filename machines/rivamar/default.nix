@@ -23,7 +23,7 @@ in
 
   hardware.acpilight.enable = true;
     
-  hardware.pulseaudio = {
+  services.pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
   };
