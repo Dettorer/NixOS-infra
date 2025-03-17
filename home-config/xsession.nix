@@ -3,7 +3,8 @@
 {
   imports = [ ./i3.nix ];
 
-  home.packages = [ pkgs.rustdesk ];
+  # 2025-03-17: rustdesk fails to build, and I don't really use it right now
+  # home.packages = [ pkgs.rustdesk ];
 
   home.keyboard = {
     layout = "fr";
