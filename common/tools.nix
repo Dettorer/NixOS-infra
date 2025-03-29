@@ -24,6 +24,9 @@ rec {
     zip
     zsh
 
+    ffmpeg
+    yt-dlp
+
     # monitoring
     htop
     nmon
