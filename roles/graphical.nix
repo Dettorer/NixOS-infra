@@ -166,11 +166,11 @@ in {
         qemu.package = pkgs.qemu_kvm;
         onBoot = "ignore";
       };
-      # virtualbox
-      virtualbox.host = {
-        enable = true;
-        enableExtensionPack = true;
-      };
+      # virtualbox XXX: disabled to speed up system build time
+      # virtualbox.host = {
+        # enable = true;
+        # enableExtensionPack = true;
+      # };
     };
 
     environment.systemPackages = with pkgs; [
