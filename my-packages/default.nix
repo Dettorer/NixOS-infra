@@ -2,19 +2,6 @@
 # overriding some of them)
 final: prev: {
   _my = {
-    # Geany with an m68k compiler/emulator/debugger plugin
-    geany-plugin-m68k = prev.qt5.callPackage ./geany-plugin-m68k {};
-    geany-epita = prev.geany.overrideAttrs (old: rec {
-      postInstall = ''
-        cp ${final._my.geany-plugin-m68k}/editor/filetypes.asm $out/share/geany/filedefs/filetypes.asm
-      '';
-
-      meta = old.meta // {
-        # geany-plugin-m68k is only supported on Linux
-        platforms = final.lib.platforms.linux;
-      };
-    });
-
     # A script to cycle between bépo -> azerty -> qwerty -> dvorak keymaps
     keymap-switch = prev.writeShellScriptBin "keymap-switch" ''
       alias grep=${final.gnugrep}/bin/grep

@@ -7,7 +7,6 @@ in
   imports = [
     ./alacritty.nix # TODO: not on server
     ./emacs.nix
-    ./epita.nix
     ./git.nix
     ./kitty.nix # TODO: not on server
     ./mails.nix
