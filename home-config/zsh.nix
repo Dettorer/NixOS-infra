@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.direnv = {
@@ -75,9 +75,9 @@
       }
     ];
 
-    initExtra =
+    initContent =
       let
-        completion_styles = ''
+        completion_styles = lib.mkOrder 1000 ''
           zstyle ':completion:*' completer _complete _ignored _correct _approximate
           zstyle ':completion:*' group-name ''\'''\'
           zstyle ':completion:*' insert-unambiguous true
@@ -90,7 +90,7 @@
           zstyle ':completion:*' use-compctl false
           zstyle ':completion:*' verbose true
         '';
-        functions = ''
+        functions = lib.mkAfter ''
           function emacs-fix-alacritty-truecolor
           {
             # one day I'll understand how to properly announce to any application if
@@ -220,19 +220,19 @@
             ${shellAliases.rscp} --inplace dettorer@dettorer.net:~/quickfetch/ "$dest"
           }
         '';
-        keybinds = ''
+        keybinds = lib.mkOrder 1000 ''
           autoload edit-command-line
           zle -N edit-command-line
           bindkey "^[[3~" delete-char
           bindkey "^[e" edit-command-line
         ''; # TODO: not sure why this part is needed, I didn't have in archlinux, different defaults?
       in
-      builtins.concatStringsSep "\n" [
-        "setopt noextendedglob"  # disable the special meaning of #, ^ and ~ (was enabled by grml)
+      lib.mkMerge [
+        (lib.mkOrder 550 (builtins.readFile ./p10k.zsh))
+        (lib.mkOrder 1000 "setopt noextendedglob")  # disable the special meaning of #, ^ and ~ (was enabled by grml)
         completion_styles
         functions
         keybinds
-        (builtins.readFile ./p10k.zsh)
       ];
   };
 }
