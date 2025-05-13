@@ -72,4 +72,6 @@ rec {
 
   # Disable nixos-option, incompatible with Lix apparently
   system.tools.nixos-option.enable = false;
+
+  virtualisation.docker.enable = true;
 }

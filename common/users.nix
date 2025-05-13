@@ -4,6 +4,7 @@
   users.users.dettorer = {
     isNormalUser = true;
     extraGroups = [
+      "docker"
       "libvirtd"
       "lp"
       "scanner"
