@@ -205,6 +205,7 @@ in {
     # For the password management of protonmail-bridge
     programs.seahorse.enable = true;
     services.gnome.gnome-keyring.enable = true;
+    services.gnome.gcr-ssh-agent.enable = false; # conflicts with programs.ssh.startAgent
 
     # For japanese input
     i18n.inputMethod = {
