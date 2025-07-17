@@ -10,5 +10,6 @@ in {
   config = lib.mkIf cfg.enable {
     programs.steam.enable = true;
     programs.steam.remotePlay.openFirewall = true;
+    environment.systemPackages = [ pkgs.dolphin-emu ];
   };
 }
