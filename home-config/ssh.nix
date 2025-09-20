@@ -8,18 +8,23 @@ rec {
       # EPITA
       "git.cri.epita.fr" = {
         user = "paul.hervot";
+        addKeysToAgent = "yes";
       };
       "ssh.cri.epita.fr" = {
         user = "paul.hervot";
+        addKeysToAgent = "yes";
       };
       "exam.pie.cri.epita.fr" = {
         user = "paul.hervot";
         proxyJump = "ssh.cri.epita.fr";
+        addKeysToAgent = "yes";
       };
       "exam-git-pie.cri.epita.fr" = programs.ssh.matchBlocks."exam.pie.cri.epita.fr"; # TODO: deprecated?
+      "*" = {
+        user = "dettorer";
+        addKeysToAgent = "yes";
+      };
     };
-
-    addKeysToAgent = "yes";
 
     extraConfig = ''
       IdentityFile ~/.ssh/id_ed25519

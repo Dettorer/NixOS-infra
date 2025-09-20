@@ -33,7 +33,7 @@ in
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
 
   my.roles = {
     gaming-client.enable = true;
