@@ -176,7 +176,7 @@ in {
     environment.systemPackages = with pkgs; [
       anki-bin
       arandr
-      barrier
+      # barrier TODO replace with deskflow or input-leap
       chromium
       discord
       escrotum
