@@ -9,7 +9,12 @@ in {
   config = lib.mkIf cfg.enable {
     services.printing = {
       enable = true;
-      drivers = with pkgs; [ cnijfilter_4_00 epson-escpr epson-escpr2 ];
+      drivers = with pkgs; [ cnijfilter_4_00 epson-escpr epson-escpr2 canon-cups-ufr2 ];
+    };
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
     };
     hardware.sane = { enable = true; };
 
