@@ -5,13 +5,35 @@
   programs.git = {
     enable = true;
 
-    aliases = {
-      st = "status";
-      ci = "commit";
-      co = "checkout";
-      sw = "switch";
-      b = "branch";
-      all = "log --graph --pretty=oneline --all --decorate=full";
+    settings = {
+      alias = {
+        st = "status";
+        ci = "commit";
+        co = "checkout";
+        sw = "switch";
+        b = "branch";
+        all = "log --graph --pretty=oneline --all --decorate=full";
+      };
+
+      user = {
+        email = "dettorer@dettorer.net";
+        name = ''Paul "Dettorer" Hervot'';
+      };
+
+      color.ui = true;
+
+      core.editor = "nvim";
+
+      merge.tool = "nvim";
+      mergetool.nvim.cmd = "nvim -d $LOCAL $REMOTE $MERGED";
+
+      pager.status = false;
+      pager.commit = false;
+
+      push.default = "simple";
+      pull.ff = "only";
+
+      init.defaultBranch = "main";
     };
 
     includes = [
@@ -32,25 +54,5 @@
         };
       }
     ];
-
-    userEmail = "dettorer@dettorer.net";
-    userName = ''Paul "Dettorer" Hervot'';
-
-    extraConfig = {
-      color.ui = true;
-
-      core.editor = "nvim";
-
-      merge.tool = "nvim";
-      mergetool.nvim.cmd = "nvim -d $LOCAL $REMOTE $MERGED";
-
-      pager.status = false;
-      pager.commit = false;
-
-      push.default = "simple";
-      pull.ff = "only";
-
-      init.defaultBranch = "main";
-    };
   };
 }
