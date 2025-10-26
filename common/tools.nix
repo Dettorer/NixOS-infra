@@ -39,6 +39,7 @@ rec {
     clang-tools
     gcc
     git
+    nixfmt
     ocaml
     pandoc
     texlive.combined.scheme-small
