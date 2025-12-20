@@ -35,6 +35,18 @@ in {
 
       workspaceAutoBackAndForth = true;
 
+      modes = {
+        "exit: [s]uspend, [r]eboot, s[h]utdown, [l]ogout" = {
+          s = "exec systemctl suspend";
+          r = "exec systemctl reboot";
+          h = "exec systemctl poweroff";
+          l = "exit";
+          # do nothing and go back to normal mode
+          Return = "mode \"default\"";
+          Escape = "mode \"default\"";
+        };
+      };
+
       keybindings = {
         # These bindings are for a bépo keymap
 
@@ -141,7 +153,7 @@ in {
         # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
         "${mod}+Shift+O" = "restart";
         # exit i3 (logs you out of your X session)
-        "${mod}+Shift+P" = "exit";
+        "${mod}+Shift+P" = "mode \"exit: [s]uspend, [r]eboot, s[h]utdown, [l]ogout\"";
 
         # keymap transitions
         "${mod}+F1" = "exec ${pkgs._my.keymap-switch}/bin/keymap-switch";
