@@ -12,6 +12,7 @@ let
   '';
 in
 {
+  # TODO remove coc and mirror my non-nixos vim-lsp config
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -200,7 +201,6 @@ in
       coc-clangd
       coc-cmake
       coc-git
-      coc-go
       coc-highlight
       coc-java
       coc-json
@@ -208,7 +208,6 @@ in
       coc-pyright
       coc-rust-analyzer
       coc-texlab
-      coc-tsserver
       coc-vimlsp
       coc-yaml
 
