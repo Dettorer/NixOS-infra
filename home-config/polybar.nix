@@ -2,7 +2,7 @@
 
 let
   xkeyboard = pkgs.writeShellScriptBin "xkeyboard" ''
-    ${pkgs.xorg.setxkbmap}/bin/setxkbmap -print | ${pkgs.gnugrep}/bin/grep xkb_symbols | ${pkgs.gawk}/bin/awk -F"+" '{print $2}'
+    ${pkgs.setxkbmap}/bin/setxkbmap -print | ${pkgs.gnugrep}/bin/grep xkb_symbols | ${pkgs.gawk}/bin/awk -F"+" '{print $2}'
   '';
   powermenu = pkgs.writeShellScriptBin "powermenu" ''
     MENU="$(${pkgs.rofi}/bin/rofi -sep "|" -dmenu -i -p 'System' -location 3 -xoffset -10 -yoffset 32 -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout| Reboot| Shutdown")"
@@ -20,7 +20,21 @@ in
 
   services.polybar = {
     enable = true;
-    package = pkgs.polybarFull;
+    package = pkgs.polybarFull.overrideAttrs {
+      # TODO: remove the override once that last `substituteInPlace` lands in
+      # nixos-unstable
+      postPatch = ''
+        substituteInPlace CMakeLists.txt --replace-fail "/etc" $out
+        substituteAllInPlace src/utils/file.cpp
+        # Fix gcc15 build: i3ipcpp forces -std=c++11 but the jsoncpp library was
+        # compiled with C++17 (JSONCPP_HAS_STRING_VIEW=1), causing ABI mismatch.
+        # The i3ipcpp code resolves operator[](const char*) but the library only
+        # exports operator[](std::string_view). Bump i3ipcpp to C++17 to match.
+        substituteInPlace lib/i3ipcpp/CMakeLists.txt --replace-fail \
+          "-std=c++11" \
+          "-std=c++17"
+      '';
+    };
 
     script = ''
       polybar rivamar-top &

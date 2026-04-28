@@ -18,6 +18,7 @@ in
     vimAlias = true;
     withNodeJs = true;
     withPython3 = true;
+    withRuby = false;
     extraPackages = with pkgs; [
       git
       jdk # for coc-java
@@ -36,6 +37,7 @@ in
       # Engines
       {
         plugin = coc-nvim;
+        type = "viml";
         config = ''
           ${mapleadersDefinitions}
 
@@ -89,8 +91,8 @@ in
       }
       {
         plugin = nvim-treesitter.withAllGrammars;
+        type = "lua";
         config = ''
-          lua << EOF
           require'nvim-treesitter.install'.compilers = {"${pkgs.clang}/bin/clang"}
           require'nvim-treesitter.configs'.setup {
             -- XXX: not sure if I need ensure_installed here or not
@@ -102,7 +104,6 @@ in
               disable = { "markdown", "latex" },
             },
           }
-          EOF
         '';
       }
 
@@ -112,10 +113,12 @@ in
       vim-devicons
       {
         plugin = vim-airline;
+        type = "viml";
         config = "let g:airline_powerline_fonts = 1";
       }
       {
         plugin = indent-blankline-nvim;
+        type = "viml";
         config = ''
           let g:indent_blankline_show_trailing_blankline_indent = v:false
           let g:indent_blankline_char_blankline = '┆'
@@ -135,6 +138,7 @@ in
       nerdtree
       {
         plugin = vim-easy-align;
+        type = "viml";
         config = ''
           " Start interactive EasyAlign in visual mode (e.g. vipga)
           xmap ga <Plug>(EasyAlign)
@@ -155,10 +159,12 @@ in
       vim-nix
       {
         plugin = rust-vim;
+        type = "viml";
         config = "let g:rust_cargo_use_clippy = 1";
       }
       {
         plugin = SimpylFold;
+        type = "viml";
         config = ''
           let g:SimpylFold_docstring_preview = 1
           let g:SimpylFold_fold_docstring = 0
@@ -166,6 +172,7 @@ in
       }
       {
         plugin = vimtex;
+        type = "viml";
         config = ''
           let g:vimtex_fold_enabled=1
           let g:vimtex_view_automatic=0
@@ -189,6 +196,7 @@ in
       }
       {
         plugin = vim-javascript;
+        type = "viml";
         config = ''
             let g:javascript_plugin_jsdoc = 1
             augroup javascript_folding
@@ -215,10 +223,12 @@ in
       vim-test
       {
         plugin = nerdcommenter;
+        type = "viml";
         config = "let g:NERDSpaceDelims=1";
       }
       {
         plugin = ultisnips;
+        type = "viml";
         config = ''
           let g:UltiSnipsExpandTrigger="<c-j>"
           let g:UltiSnipsSnippetDirectories=["plugged/UltiSnips/UltiSnips", "${./nvim/ultisnips_snippets}"]

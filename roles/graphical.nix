@@ -37,7 +37,7 @@ in {
             '';
           }];
 
-          setupCommands = ''${pkgs.xorg.xset}/bin/xset s off -dpms'';
+          setupCommands = ''${pkgs.xset}/bin/xset s off -dpms'';
         };
       };
 

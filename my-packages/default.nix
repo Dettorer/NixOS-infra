@@ -6,7 +6,7 @@ final: prev: {
     keymap-switch = prev.writeShellScriptBin "keymap-switch" ''
       alias grep=${final.gnugrep}/bin/grep
       alias sed=${final.gnused}/bin/sed
-      alias setxkbmap=${final.xorg.setxkbmap}/bin/setxkbmap
+      alias setxkbmap=${final.setxkbmap}/bin/setxkbmap
 
       # Get current keymap
       get_keymap() {
