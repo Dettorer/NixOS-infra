@@ -194,6 +194,7 @@ in {
       pavucontrol
       pdfpc
       redshift
+      rustdesk
       thunderbird
       tridactyl-native # for extra features of the tridactyl firefox plugin
       virt-manager
