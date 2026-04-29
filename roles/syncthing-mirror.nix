@@ -21,7 +21,7 @@ in {
       overrideDevices = true;
       overrideFolders = true;
 
-      guiAddress = "10.8.0.30:8384";  # TODO: this is the hardcoded rivamar's Magnet VPN IP
+      guiAddress = "10.8.0.28:8384";  # TODO: this is the hardcoded rivamar's Magnet VPN IP
       openDefaultPorts = true;  # TODO: The gui interface is unreachable on the actual VPN, but reachable locally
 
       settings = {
