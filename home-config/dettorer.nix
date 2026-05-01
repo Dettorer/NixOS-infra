@@ -11,6 +11,7 @@ in
     ./kitty.nix # TODO: not on server
     ./mails.nix
     ./neovim.nix
+    ./obsidian.nix
     ./ssh.nix
     ./tmux.nix
     ./vscode.nix
